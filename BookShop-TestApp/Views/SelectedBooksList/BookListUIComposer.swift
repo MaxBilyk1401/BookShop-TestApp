@@ -1,5 +1,5 @@
 //
-//  SelectedBooksUIComposer.swift
+//  BookListUIComposer.swift
 //  BookShop-TestApp
 //
 //  Created by Maxos on 7/6/23.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-//enum SelectedBookListUIComposer {
-//    
+//enum BookListUIComposer {
+//
 //    static func build() -> UIViewController {
-//        
+//
 //    }
 //}

@@ -8,7 +8,7 @@
 import UIKit
 
 final class CategoriesViewController: UIViewController {
-    private var list: [CategoriesModel] = []
+    private var list: [CategoryModel] = []
     private var router: Router
     private var viewModel: CategoriesViewModel
     private var titleLabel: UILabel!

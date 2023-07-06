@@ -10,6 +10,9 @@ import UIKit
 enum CategoriesUIComposer {
     
     static func build(router: Router) -> UIViewController {
-        return CategoriesViewController(router: router, viewModel: CategoriesViewModel(categoriesService: NetworkingManager()))
+        let networkService = NetworkCategoriesService()
+        let localService = CoreDataCategoriesService()
+        let compositeService = LocalCategoriesServiceWithNetworkFallBack(localService: localService, networkService: networkService, localStorage: localService)
+        return CategoriesViewController(router: router, viewModel: CategoriesViewModel(categoriesService: compositeService))
     }
 }

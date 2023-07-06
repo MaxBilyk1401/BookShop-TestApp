@@ -1,5 +1,5 @@
 //
-//  SelectedBookListViewController.swift
+//  BookListViewController.swift
 //  BookShop-TestApp
 //
 //  Created by Maxos on 7/6/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SelectedBookListViewController: UIViewController {
+final class BookListViewController: UIViewController {
     private var tableView: UITableView!
     private var titleLabel: UILabel!
     
@@ -33,8 +33,8 @@ final class SelectedBookListViewController: UIViewController {
     
     private func setupTableView() {
         tableView = UITableView()
-        tableView.dataSource = self
-        tableView.delegate = self
+//        tableView.dataSource = self
+//        tableView.delegate = self
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,16 +47,16 @@ final class SelectedBookListViewController: UIViewController {
     }
 }
 
-extension SelectedBookListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }
-}
-
-extension SelectedBookListViewController: UITableViewDelegate {
-    
-}
+//extension BookListViewController: UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        1
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        <#code#>
+//    }
+//}
+//
+//extension BookListViewController: UITableViewDelegate {
+//
+//}

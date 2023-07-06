@@ -24,7 +24,7 @@ class CategoriesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupModel(_ model: CategoriesModel) {
+    func setupModel(_ model: CategoryModel) {
         title.text = model.displayName
         dateLabel.text = model.newestPublishedDate
     }

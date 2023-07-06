@@ -8,5 +8,5 @@
 import Foundation
 
 protocol CategoriesService {
-    func loadData(completion: @escaping (Result<[CategoriesModel], Error>) -> Void)
+    func loadData(completion: @escaping (Result<[CategoryModel], Error>) -> Void)
 }

@@ -1,5 +1,5 @@
 //
-//  SelectedBookTableViewCell.swift
+//  BookTableViewCell.swift
 //  BookShop-TestApp
 //
 //  Created by Maxos on 7/6/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SelectedBookTableViewCell: UITableViewCell {
+final class BookTableViewCell: UITableViewCell {
     private var nameLabel: UILabel!
     private var descriptionLabel: UILabel!
     private var authorLabel: UILabel!

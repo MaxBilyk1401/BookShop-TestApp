@@ -1,5 +1,5 @@
 //
-//  CategoriesModel.swift
+//  NetworkCategoryModel.swift
 //  BookShop-TestApp
 //
 //  Created by Maxos on 7/6/23.
@@ -7,8 +7,10 @@
 
 import Foundation
 
-struct CategoriesModel: Decodable {
-    let listName, displayName, oldestPublishedDate: String
+struct NetworkCategoryModel: Decodable {
+    let listName: String
+    let displayName: String
+    let oldestPublishedDate: String
     let newestPublishedDate: String
     
     enum CodingKeys: String, CodingKey {

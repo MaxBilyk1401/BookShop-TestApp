@@ -10,7 +10,7 @@ import Foundation
 final class CategoriesViewModel {
     private let categoriesService: CategoriesService
     var onLoading: ((Bool) -> Void)?
-    var onRefresh: (([CategoriesModel]) -> Void)?
+    var onRefresh: (([CategoryModel]) -> Void)?
     var onFailure: ((String?) -> Void)?
     
     init(categoriesService: CategoriesService) {

@@ -13,21 +13,24 @@
 		9D32770A2A5218E00071F6A7 /* BookShop_TestApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277082A5218E00071F6A7 /* BookShop_TestApp.xcdatamodeld */; };
 		9D32770C2A5218E20071F6A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D32770B2A5218E20071F6A7 /* Assets.xcassets */; };
 		9D32770F2A5218E20071F6A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D32770D2A5218E20071F6A7 /* LaunchScreen.storyboard */; };
-		9D32771A2A535AC30071F6A7 /* CategoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277192A535AC30071F6A7 /* CategoriesResponse.swift */; };
+		9D32771A2A535AC30071F6A7 /* NetworkCategoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277192A535AC30071F6A7 /* NetworkCategoriesResponse.swift */; };
 		9D32771C2A535DEB0071F6A7 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32771B2A535DEB0071F6A7 /* CategoriesViewModel.swift */; };
-		9D32771E2A535E150071F6A7 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32771D2A535E150071F6A7 /* NetworkingManager.swift */; };
+		9D32771E2A535E150071F6A7 /* NetworkCategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32771D2A535E150071F6A7 /* NetworkCategoriesService.swift */; };
 		9D3277212A5361D70071F6A7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9D3277202A5361D70071F6A7 /* Alamofire */; };
 		9D3277232A5367AF0071F6A7 /* CategoriesUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277222A5367AF0071F6A7 /* CategoriesUIComposer.swift */; };
 		9D3277262A536DA60071F6A7 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277252A536DA60071F6A7 /* CategoriesTableViewCell.swift */; };
 		9D3277282A544E7B0071F6A7 /* CategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277272A544E7B0071F6A7 /* CategoriesService.swift */; };
 		9D32772A2A55789C0071F6A7 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277292A55789C0071F6A7 /* Color+Extension.swift */; };
 		9D32772E2A5617180071F6A7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32772D2A5617180071F6A7 /* Router.swift */; };
-		9D3277312A5622F70071F6A7 /* SelectedBookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277302A5622F70071F6A7 /* SelectedBookListViewController.swift */; };
-		9D3277352A5626780071F6A7 /* SelectedBookListUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277342A5626780071F6A7 /* SelectedBookListUIComposer.swift */; };
+		9D3277312A5622F70071F6A7 /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277302A5622F70071F6A7 /* BookListViewController.swift */; };
+		9D3277352A5626780071F6A7 /* BookListUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277342A5626780071F6A7 /* BookListUIComposer.swift */; };
 		9D3277372A5626F30071F6A7 /* SelectedBookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277362A5626F30071F6A7 /* SelectedBookListViewModel.swift */; };
-		9D3277392A5627DF0071F6A7 /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277382A5627DF0071F6A7 /* CategoriesModel.swift */; };
+		9D3277392A5627DF0071F6A7 /* NetworkCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277382A5627DF0071F6A7 /* NetworkCategoryModel.swift */; };
 		9D32773D2A5628A80071F6A7 /* NetworkingManagerSelectedBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32773C2A5628A80071F6A7 /* NetworkingManagerSelectedBook.swift */; };
-		9D32773F2A562ECD0071F6A7 /* SelectedBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32773E2A562ECD0071F6A7 /* SelectedBookTableViewCell.swift */; };
+		9D32773F2A562ECD0071F6A7 /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32773E2A562ECD0071F6A7 /* BookTableViewCell.swift */; };
+		9D3277432A56C2860071F6A7 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277422A56C2860071F6A7 /* CategoryModel.swift */; };
+		9D3277472A56CB4F0071F6A7 /* CoreDataCategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277462A56CB4F0071F6A7 /* CoreDataCategoriesService.swift */; };
+		9D3277492A56E0EA0071F6A7 /* LocalCategoriesServiceWithNetworkFallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277482A56E0EA0071F6A7 /* LocalCategoriesServiceWithNetworkFallBack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,20 +42,23 @@
 		9D32770B2A5218E20071F6A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D32770E2A5218E20071F6A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D3277102A5218E20071F6A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9D3277192A535AC30071F6A7 /* CategoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesResponse.swift; sourceTree = "<group>"; };
+		9D3277192A535AC30071F6A7 /* NetworkCategoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCategoriesResponse.swift; sourceTree = "<group>"; };
 		9D32771B2A535DEB0071F6A7 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
-		9D32771D2A535E150071F6A7 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		9D32771D2A535E150071F6A7 /* NetworkCategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCategoriesService.swift; sourceTree = "<group>"; };
 		9D3277222A5367AF0071F6A7 /* CategoriesUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesUIComposer.swift; sourceTree = "<group>"; };
 		9D3277252A536DA60071F6A7 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		9D3277272A544E7B0071F6A7 /* CategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesService.swift; sourceTree = "<group>"; };
 		9D3277292A55789C0071F6A7 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		9D32772D2A5617180071F6A7 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		9D3277302A5622F70071F6A7 /* SelectedBookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedBookListViewController.swift; sourceTree = "<group>"; };
-		9D3277342A5626780071F6A7 /* SelectedBookListUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedBookListUIComposer.swift; sourceTree = "<group>"; };
+		9D3277302A5622F70071F6A7 /* BookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
+		9D3277342A5626780071F6A7 /* BookListUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListUIComposer.swift; sourceTree = "<group>"; };
 		9D3277362A5626F30071F6A7 /* SelectedBookListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedBookListViewModel.swift; sourceTree = "<group>"; };
-		9D3277382A5627DF0071F6A7 /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
+		9D3277382A5627DF0071F6A7 /* NetworkCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCategoryModel.swift; sourceTree = "<group>"; };
 		9D32773C2A5628A80071F6A7 /* NetworkingManagerSelectedBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerSelectedBook.swift; sourceTree = "<group>"; };
-		9D32773E2A562ECD0071F6A7 /* SelectedBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedBookTableViewCell.swift; sourceTree = "<group>"; };
+		9D32773E2A562ECD0071F6A7 /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
+		9D3277422A56C2860071F6A7 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		9D3277462A56CB4F0071F6A7 /* CoreDataCategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCategoriesService.swift; sourceTree = "<group>"; };
+		9D3277482A56E0EA0071F6A7 /* LocalCategoriesServiceWithNetworkFallBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCategoriesServiceWithNetworkFallBack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +110,6 @@
 		9D3277162A532A750071F6A7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9D3277192A535AC30071F6A7 /* CategoriesResponse.swift */,
-				9D3277382A5627DF0071F6A7 /* CategoriesModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -125,7 +129,6 @@
 				9D3277032A5218E00071F6A7 /* CategoriesViewController.swift */,
 				9D3277252A536DA60071F6A7 /* CategoriesTableViewCell.swift */,
 				9D32771B2A535DEB0071F6A7 /* CategoriesViewModel.swift */,
-				9D3277272A544E7B0071F6A7 /* CategoriesService.swift */,
 				9D3277222A5367AF0071F6A7 /* CategoriesUIComposer.swift */,
 			);
 			path = Categories;
@@ -134,9 +137,9 @@
 		9D32772F2A5622840071F6A7 /* SelectedBooksList */ = {
 			isa = PBXGroup;
 			children = (
-				9D3277302A5622F70071F6A7 /* SelectedBookListViewController.swift */,
-				9D3277342A5626780071F6A7 /* SelectedBookListUIComposer.swift */,
-				9D32773E2A562ECD0071F6A7 /* SelectedBookTableViewCell.swift */,
+				9D3277302A5622F70071F6A7 /* BookListViewController.swift */,
+				9D3277342A5626780071F6A7 /* BookListUIComposer.swift */,
+				9D32773E2A562ECD0071F6A7 /* BookTableViewCell.swift */,
 				9D3277362A5626F30071F6A7 /* SelectedBookListViewModel.swift */,
 			);
 			path = SelectedBooksList;
@@ -153,10 +156,48 @@
 		9D3277332A5623D50071F6A7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				9D32771D2A535E150071F6A7 /* NetworkingManager.swift */,
-				9D32773C2A5628A80071F6A7 /* NetworkingManagerSelectedBook.swift */,
+				9D3277412A56C2520071F6A7 /* Networking */,
+				9D3277402A56C23C0071F6A7 /* CategoriesService */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		9D3277402A56C23C0071F6A7 /* CategoriesService */ = {
+			isa = PBXGroup;
+			children = (
+				9D3277272A544E7B0071F6A7 /* CategoriesService.swift */,
+				9D3277422A56C2860071F6A7 /* CategoryModel.swift */,
+				9D3277452A56C3290071F6A7 /* CoreDataCategoriesService */,
+				9D3277442A56C2FF0071F6A7 /* NetworkCategoriesService */,
+			);
+			path = CategoriesService;
+			sourceTree = "<group>";
+		};
+		9D3277412A56C2520071F6A7 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9D32773C2A5628A80071F6A7 /* NetworkingManagerSelectedBook.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		9D3277442A56C2FF0071F6A7 /* NetworkCategoriesService */ = {
+			isa = PBXGroup;
+			children = (
+				9D3277482A56E0EA0071F6A7 /* LocalCategoriesServiceWithNetworkFallBack.swift */,
+				9D32771D2A535E150071F6A7 /* NetworkCategoriesService.swift */,
+				9D3277192A535AC30071F6A7 /* NetworkCategoriesResponse.swift */,
+				9D3277382A5627DF0071F6A7 /* NetworkCategoryModel.swift */,
+			);
+			path = NetworkCategoriesService;
+			sourceTree = "<group>";
+		};
+		9D3277452A56C3290071F6A7 /* CoreDataCategoriesService */ = {
+			isa = PBXGroup;
+			children = (
+				9D3277462A56CB4F0071F6A7 /* CoreDataCategoriesService.swift */,
+			);
+			path = CoreDataCategoriesService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,24 +276,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D32771A2A535AC30071F6A7 /* CategoriesResponse.swift in Sources */,
+				9D32771A2A535AC30071F6A7 /* NetworkCategoriesResponse.swift in Sources */,
 				9D3277232A5367AF0071F6A7 /* CategoriesUIComposer.swift in Sources */,
+				9D3277432A56C2860071F6A7 /* CategoryModel.swift in Sources */,
 				9D3277262A536DA60071F6A7 /* CategoriesTableViewCell.swift in Sources */,
 				9D3277042A5218E00071F6A7 /* CategoriesViewController.swift in Sources */,
 				9D32772E2A5617180071F6A7 /* Router.swift in Sources */,
 				9D3277002A5218E00071F6A7 /* AppDelegate.swift in Sources */,
 				9D3277372A5626F30071F6A7 /* SelectedBookListViewModel.swift in Sources */,
-				9D3277392A5627DF0071F6A7 /* CategoriesModel.swift in Sources */,
+				9D3277392A5627DF0071F6A7 /* NetworkCategoryModel.swift in Sources */,
 				9D32770A2A5218E00071F6A7 /* BookShop_TestApp.xcdatamodeld in Sources */,
+				9D3277492A56E0EA0071F6A7 /* LocalCategoriesServiceWithNetworkFallBack.swift in Sources */,
 				9D32773D2A5628A80071F6A7 /* NetworkingManagerSelectedBook.swift in Sources */,
 				9D32771C2A535DEB0071F6A7 /* CategoriesViewModel.swift in Sources */,
-				9D3277312A5622F70071F6A7 /* SelectedBookListViewController.swift in Sources */,
-				9D3277352A5626780071F6A7 /* SelectedBookListUIComposer.swift in Sources */,
-				9D32773F2A562ECD0071F6A7 /* SelectedBookTableViewCell.swift in Sources */,
+				9D3277312A5622F70071F6A7 /* BookListViewController.swift in Sources */,
+				9D3277352A5626780071F6A7 /* BookListUIComposer.swift in Sources */,
+				9D32773F2A562ECD0071F6A7 /* BookTableViewCell.swift in Sources */,
 				9D3277022A5218E00071F6A7 /* SceneDelegate.swift in Sources */,
+				9D3277472A56CB4F0071F6A7 /* CoreDataCategoriesService.swift in Sources */,
 				9D3277282A544E7B0071F6A7 /* CategoriesService.swift in Sources */,
 				9D32772A2A55789C0071F6A7 /* Color+Extension.swift in Sources */,
-				9D32771E2A535E150071F6A7 /* NetworkingManager.swift in Sources */,
+				9D32771E2A535E150071F6A7 /* NetworkCategoriesService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
