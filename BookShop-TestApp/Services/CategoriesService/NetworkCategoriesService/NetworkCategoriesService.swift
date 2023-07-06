@@ -10,9 +10,9 @@ import Moya
 
 struct NetworkCategoriesService: CategoriesService {
 #if DEBUG
-    let provider = MoyaProvider<MService>(plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))])
+    let provider = MoyaProvider<LoadService>(plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))])
 #else
-    let provider = MoyaProvider<MService>()
+    let provider = MoyaProvider<LoadService>()
 #endif
     
     func loadData(completion: @escaping (Result<[CategoryModel], Error>) -> Void) {

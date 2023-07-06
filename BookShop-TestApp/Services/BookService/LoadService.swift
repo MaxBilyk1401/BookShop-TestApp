@@ -8,12 +8,12 @@
 import Moya
 import Foundation
 
-enum MService {
+enum LoadService {
     case categories
     case showBooks(path: String)
 }
 
-extension MService: TargetType {
+extension LoadService: TargetType {
     var baseURL: URL { URL(string: "https://api.nytimes.com/svc/books/v3/lists")! }
     
     var path: String {
