@@ -35,6 +35,8 @@
 		9D3277542A56FBE10071F6A7 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 9D3277532A56FBE10071F6A7 /* ReactiveMoya */; };
 		9D3277562A56FBE10071F6A7 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 9D3277552A56FBE10071F6A7 /* RxMoya */; };
 		9D3277582A56FD470071F6A7 /* MService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277572A56FD470071F6A7 /* MService.swift */; };
+		9D32775B2A574DAD0071F6A7 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32775A2A574DAD0071F6A7 /* BookService.swift */; };
+		9D32775D2A574E160071F6A7 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32775C2A574E160071F6A7 /* BookModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		9D3277462A56CB4F0071F6A7 /* CoreDataCategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCategoriesService.swift; sourceTree = "<group>"; };
 		9D3277482A56E0EA0071F6A7 /* LocalCategoriesServiceWithNetworkFallBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCategoriesServiceWithNetworkFallBack.swift; sourceTree = "<group>"; };
 		9D3277572A56FD470071F6A7 /* MService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MService.swift; sourceTree = "<group>"; };
+		9D32775A2A574DAD0071F6A7 /* BookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookService.swift; sourceTree = "<group>"; };
+		9D32775C2A574E160071F6A7 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,7 @@
 		9D3277332A5623D50071F6A7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				9D3277592A574D9A0071F6A7 /* BookService */,
 				9D3277412A56C2520071F6A7 /* Networking */,
 				9D3277402A56C23C0071F6A7 /* CategoriesService */,
 			);
@@ -207,6 +212,39 @@
 				9D3277462A56CB4F0071F6A7 /* CoreDataCategoriesService.swift */,
 			);
 			path = CoreDataCategoriesService;
+			sourceTree = "<group>";
+		};
+		9D3277592A574D9A0071F6A7 /* BookService */ = {
+			isa = PBXGroup;
+			children = (
+				9D32775A2A574DAD0071F6A7 /* BookService.swift */,
+				9D32775C2A574E160071F6A7 /* BookModel.swift */,
+				9D3277602A574E330071F6A7 /* LocalBooksServiceWithNetworkFallBack */,
+				9D32775F2A574E250071F6A7 /* NetworksBooksService */,
+				9D32775E2A574E190071F6A7 /* CoreDataBooksService */,
+			);
+			path = BookService;
+			sourceTree = "<group>";
+		};
+		9D32775E2A574E190071F6A7 /* CoreDataBooksService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreDataBooksService;
+			sourceTree = "<group>";
+		};
+		9D32775F2A574E250071F6A7 /* NetworksBooksService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetworksBooksService;
+			sourceTree = "<group>";
+		};
+		9D3277602A574E330071F6A7 /* LocalBooksServiceWithNetworkFallBack */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LocalBooksServiceWithNetworkFallBack;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,7 +330,9 @@
 				9D3277232A5367AF0071F6A7 /* CategoriesUIComposer.swift in Sources */,
 				9D3277432A56C2860071F6A7 /* CategoryModel.swift in Sources */,
 				9D3277582A56FD470071F6A7 /* MService.swift in Sources */,
+				9D32775B2A574DAD0071F6A7 /* BookService.swift in Sources */,
 				9D3277262A536DA60071F6A7 /* CategoriesTableViewCell.swift in Sources */,
+				9D32775D2A574E160071F6A7 /* BookModel.swift in Sources */,
 				9D3277042A5218E00071F6A7 /* CategoriesViewController.swift in Sources */,
 				9D32772E2A5617180071F6A7 /* Router.swift in Sources */,
 				9D3277002A5218E00071F6A7 /* AppDelegate.swift in Sources */,
