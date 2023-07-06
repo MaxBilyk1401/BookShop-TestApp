@@ -16,7 +16,6 @@
 		9D32771A2A535AC30071F6A7 /* NetworkCategoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277192A535AC30071F6A7 /* NetworkCategoriesResponse.swift */; };
 		9D32771C2A535DEB0071F6A7 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32771B2A535DEB0071F6A7 /* CategoriesViewModel.swift */; };
 		9D32771E2A535E150071F6A7 /* NetworkCategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32771D2A535E150071F6A7 /* NetworkCategoriesService.swift */; };
-		9D3277212A5361D70071F6A7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9D3277202A5361D70071F6A7 /* Alamofire */; };
 		9D3277232A5367AF0071F6A7 /* CategoriesUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277222A5367AF0071F6A7 /* CategoriesUIComposer.swift */; };
 		9D3277262A536DA60071F6A7 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277252A536DA60071F6A7 /* CategoriesTableViewCell.swift */; };
 		9D3277282A544E7B0071F6A7 /* CategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277272A544E7B0071F6A7 /* CategoriesService.swift */; };
@@ -31,6 +30,11 @@
 		9D3277432A56C2860071F6A7 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277422A56C2860071F6A7 /* CategoryModel.swift */; };
 		9D3277472A56CB4F0071F6A7 /* CoreDataCategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277462A56CB4F0071F6A7 /* CoreDataCategoriesService.swift */; };
 		9D3277492A56E0EA0071F6A7 /* LocalCategoriesServiceWithNetworkFallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277482A56E0EA0071F6A7 /* LocalCategoriesServiceWithNetworkFallBack.swift */; };
+		9D3277502A56FBE10071F6A7 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 9D32774F2A56FBE10071F6A7 /* CombineMoya */; };
+		9D3277522A56FBE10071F6A7 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9D3277512A56FBE10071F6A7 /* Moya */; };
+		9D3277542A56FBE10071F6A7 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 9D3277532A56FBE10071F6A7 /* ReactiveMoya */; };
+		9D3277562A56FBE10071F6A7 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 9D3277552A56FBE10071F6A7 /* RxMoya */; };
+		9D3277582A56FD470071F6A7 /* MService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277572A56FD470071F6A7 /* MService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +63,7 @@
 		9D3277422A56C2860071F6A7 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		9D3277462A56CB4F0071F6A7 /* CoreDataCategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCategoriesService.swift; sourceTree = "<group>"; };
 		9D3277482A56E0EA0071F6A7 /* LocalCategoriesServiceWithNetworkFallBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCategoriesServiceWithNetworkFallBack.swift; sourceTree = "<group>"; };
+		9D3277572A56FD470071F6A7 /* MService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +71,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D3277212A5361D70071F6A7 /* Alamofire in Frameworks */,
+				9D3277522A56FBE10071F6A7 /* Moya in Frameworks */,
+				9D3277502A56FBE10071F6A7 /* CombineMoya in Frameworks */,
+				9D3277562A56FBE10071F6A7 /* RxMoya in Frameworks */,
+				9D3277542A56FBE10071F6A7 /* ReactiveMoya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +196,7 @@
 				9D32771D2A535E150071F6A7 /* NetworkCategoriesService.swift */,
 				9D3277192A535AC30071F6A7 /* NetworkCategoriesResponse.swift */,
 				9D3277382A5627DF0071F6A7 /* NetworkCategoryModel.swift */,
+				9D3277572A56FD470071F6A7 /* MService.swift */,
 			);
 			path = NetworkCategoriesService;
 			sourceTree = "<group>";
@@ -217,7 +226,10 @@
 			);
 			name = "BookShop-TestApp";
 			packageProductDependencies = (
-				9D3277202A5361D70071F6A7 /* Alamofire */,
+				9D32774F2A56FBE10071F6A7 /* CombineMoya */,
+				9D3277512A56FBE10071F6A7 /* Moya */,
+				9D3277532A56FBE10071F6A7 /* ReactiveMoya */,
+				9D3277552A56FBE10071F6A7 /* RxMoya */,
 			);
 			productName = "BookShop-TestApp";
 			productReference = 9D3276FC2A5218E00071F6A7 /* BookShop-TestApp.app */;
@@ -248,7 +260,7 @@
 			);
 			mainGroup = 9D3276F32A5218E00071F6A7;
 			packageReferences = (
-				9D32771F2A5361D70071F6A7 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				9D32774E2A56FBE10071F6A7 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 9D3276FD2A5218E00071F6A7 /* Products */;
 			projectDirPath = "";
@@ -279,6 +291,7 @@
 				9D32771A2A535AC30071F6A7 /* NetworkCategoriesResponse.swift in Sources */,
 				9D3277232A5367AF0071F6A7 /* CategoriesUIComposer.swift in Sources */,
 				9D3277432A56C2860071F6A7 /* CategoryModel.swift in Sources */,
+				9D3277582A56FD470071F6A7 /* MService.swift in Sources */,
 				9D3277262A536DA60071F6A7 /* CategoriesTableViewCell.swift in Sources */,
 				9D3277042A5218E00071F6A7 /* CategoriesViewController.swift in Sources */,
 				9D32772E2A5617180071F6A7 /* Router.swift in Sources */,
@@ -508,21 +521,36 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9D32771F2A5361D70071F6A7 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		9D32774E2A56FBE10071F6A7 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			repositoryURL = "https://github.com/Moya/Moya";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				minimumVersion = 15.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9D3277202A5361D70071F6A7 /* Alamofire */ = {
+		9D32774F2A56FBE10071F6A7 /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9D32771F2A5361D70071F6A7 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
+			package = 9D32774E2A56FBE10071F6A7 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		9D3277512A56FBE10071F6A7 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D32774E2A56FBE10071F6A7 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		9D3277532A56FBE10071F6A7 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D32774E2A56FBE10071F6A7 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		9D3277552A56FBE10071F6A7 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D32774E2A56FBE10071F6A7 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
 		};
 /* End XCSwiftPackageProductDependency section */
 

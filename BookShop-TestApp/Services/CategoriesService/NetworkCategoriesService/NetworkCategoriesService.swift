@@ -6,17 +6,22 @@
 //
 
 import Foundation
-import Alamofire
+import Moya
 
 struct NetworkCategoriesService: CategoriesService {
+#if DEBUG
+    let provider = MoyaProvider<MService>(plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))])
+#else
+    let provider = MoyaProvider<MService>()
+#endif
     
     func loadData(completion: @escaping (Result<[CategoryModel], Error>) -> Void) {
-        AF.request("https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=8bGcfSPXwyGO8MAtAK6aPmXGaVmKZrzn").responseData { response in
-            switch response.result {
-            case .success(let data):
+        provider.request(.categories) { response in
+            switch response {
+            case .success(let response):
                 do {
-                    let result = try JSONDecoder().decode(NetworkCategoriesResponse.self, from: data)
-                    let buissnesModel = result.results.map { CategoryModel(from: $0) }
+                    let result = try JSONDecoder().decode(NetworkCategoriesResponse.self, from: response.data)
+                    let buissnesModel = result.results.map { model in CategoryModel(from: model) }
                     completion(.success(buissnesModel))
                 } catch {
                     print(error)
@@ -37,3 +42,5 @@ private extension CategoryModel {
         self.oldestPublishedDate = networkModel.oldestPublishedDate
     }
 }
+
+
