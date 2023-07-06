@@ -10,7 +10,7 @@ import Foundation
 
 enum LoadService {
     case categories
-    case showBooks(path: String)
+    case showBooks(categoryName: String)
 }
 
 extension LoadService: TargetType {
@@ -20,8 +20,8 @@ extension LoadService: TargetType {
         switch self {
         case .categories:
             return "/names.json"
-        case .showBooks(let path):
-            return "/names/\(path).json"
+        case .showBooks(let categoryName):
+            return "/current/\(categoryName).json"
         }
     }
     
