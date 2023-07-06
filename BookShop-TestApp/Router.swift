@@ -18,7 +18,7 @@ final class Router {
         navigationController?.setViewControllers([CategoriesUIComposer.build(router: self)], animated: true)
     }
     
-    func showSelectedBooksList(category: CategoryModel) {
-        
+    func showSelectedBooksList(categoryName: String) {
+        navigationController?.pushViewController(BookListUIComposer.build(router: self, categoryName: categoryName), animated: true)
     }
 }

@@ -87,7 +87,7 @@ final class CategoriesViewController: UIViewController {
 extension CategoriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = (list[indexPath.row].displayName)
-        
+        router.showSelectedBooksList(categoryName: category)
     }
 }
 

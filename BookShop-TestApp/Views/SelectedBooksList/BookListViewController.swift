@@ -8,13 +8,30 @@
 import UIKit
 
 final class BookListViewController: UIViewController {
+    private var list: [BooksModel] = []
+    private var router: Router
+    private var viewModel: BooksViewModel
     private var tableView: UITableView!
     private var titleLabel: UILabel!
+    private var categoryName: String!
     
+    init(router: Router, viewModel: BooksViewModel) {
+        self.router = router
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTitleLabel()
+        setupTableView()
+        
+        viewModel.fetchData(categoryName: categoryName)
     }
     
     private func setupTitleLabel() {
@@ -33,8 +50,8 @@ final class BookListViewController: UIViewController {
     
     private func setupTableView() {
         tableView = UITableView()
-//        tableView.dataSource = self
-//        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,16 +64,16 @@ final class BookListViewController: UIViewController {
     }
 }
 
-//extension BookListViewController: UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        1
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
-//}
-//
-//extension BookListViewController: UITableViewDelegate {
-//
-//}
+extension BookListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+}
+
+extension BookListViewController: UITableViewDelegate {
+
+}
