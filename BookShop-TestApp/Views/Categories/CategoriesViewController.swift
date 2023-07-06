@@ -7,11 +7,22 @@
 
 import UIKit
 
-final class MainViewController: UIViewController {
+final class CategoriesViewController: UIViewController {
     private var list: [CategoriesModel] = []
-    var viewModel: CategoriesViewModel!
-    var titleLable: UILabel!
-    var categoriesTableView: UITableView!
+    private var router: Router
+    private var viewModel: CategoriesViewModel
+    private var titleLabel: UILabel!
+    private var categoriesTableView: UITableView!
+    
+    init( router: Router, viewModel: CategoriesViewModel!) {
+        self.router = router
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +30,6 @@ final class MainViewController: UIViewController {
         setupTitleLable()
         setupTableVeiw()
         bindOnViewModel()
-        
         
         viewModel.fetchData()
     }
@@ -42,16 +52,16 @@ final class MainViewController: UIViewController {
     }
     
     private func setupTitleLable() {
-        titleLable = UILabel()
-        titleLable.text = "Categories"
-        titleLable.font = .systemFont(ofSize: 24, weight: .heavy)
-        titleLable.textColor = .black
+        titleLabel = UILabel()
+        titleLabel.text = "Categories"
+        titleLabel.font = .systemFont(ofSize: 24, weight: .heavy)
+        titleLabel.textColor = .black
         
-        view.addSubview(titleLable)
-        titleLable.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            titleLable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16)
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -24),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16)
         ])
     }
     
@@ -66,7 +76,7 @@ final class MainViewController: UIViewController {
         view.addSubview(categoriesTableView)
         categoriesTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            categoriesTableView.topAnchor.constraint(equalTo: titleLable.bottomAnchor, constant: 16),
+            categoriesTableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             categoriesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             categoriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             categoriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -74,11 +84,14 @@ final class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: UITableViewDelegate {
-    
+extension CategoriesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let category = (list[indexPath.row].displayName)
+        
+    }
 }
 
-extension MainViewController: UITableViewDataSource {
+extension CategoriesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         list.count
     }
