@@ -29,7 +29,13 @@ final class BookListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+        setupTitleLabel()
+        setupTableView()
+        bindOnViewModel()
+        viewModel.fetchData(categoryName: categoryName)
+    }
+    
+    private func bindOnViewModel() {
         viewModel.onLoading = { [weak self] isLoading in
             guard let self else { return }
             if isLoading {
@@ -44,10 +50,6 @@ final class BookListViewController: UIViewController {
             self.list = list
             tableView.reloadData()
         }
-        
-        setupTitleLabel()
-        setupTableView()
-        viewModel.fetchData(categoryName: categoryName)
     }
     
     private func setupTitleLabel() {
@@ -87,13 +89,18 @@ extension BookListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         list.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BookTableViewCell.identifier) as! BookTableViewCell
+        cell.setup(list[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 72.0
     }
 }
 
 extension BookListViewController: UITableViewDelegate {
-
+    
 }
