@@ -20,6 +20,7 @@
     </entity>
     <entity name="LocalCategoryModel" representedClassName="LocalCategoryModel" syncable="YES" codeGenerationType="class">
         <attribute name="displayName" attributeType="String"/>
+        <attribute name="encodeName" attributeType="String"/>
         <attribute name="listName" attributeType="String"/>
         <attribute name="newestPublishedDate" attributeType="String"/>
         <attribute name="oldestPublishedDate" attributeType="String"/>

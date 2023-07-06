@@ -15,9 +15,10 @@ final class BookListViewController: UIViewController {
     private var titleLabel: UILabel!
     private var categoryName: String!
     
-    init(router: Router, viewModel: BooksViewModel) {
+    init(router: Router, viewModel: BooksViewModel, categoryName: String) {
         self.router = router
         self.viewModel = viewModel
+        self.categoryName = categoryName
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,10 +28,25 @@ final class BookListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+        
+        viewModel.onLoading = { [weak self] isLoading in
+            guard let self else { return }
+            if isLoading {
+                tableView.refreshControl?.beginRefreshing()
+            } else {
+                tableView.refreshControl?.endRefreshing()
+            }
+        }
+        
+        viewModel.onRefresh = { [weak self] books in
+            guard let self else { return }
+            self.list = list
+            tableView.reloadData()
+        }
         
         setupTitleLabel()
         setupTableView()
-        
         viewModel.fetchData(categoryName: categoryName)
     }
     
@@ -43,15 +59,18 @@ final class BookListViewController: UIViewController {
         view.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -24),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16)
         ])
     }
     
     private func setupTableView() {
+        let controll = UIRefreshControl()
         tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.refreshControl = controll
+        tableView.register(BookTableViewCell.self, forCellReuseIdentifier: BookTableViewCell.identifier)
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -66,11 +85,12 @@ final class BookListViewController: UIViewController {
 
 extension BookListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        list.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: BookTableViewCell.identifier) as! BookTableViewCell
+        return cell
     }
 }
 
