@@ -53,7 +53,7 @@ final class CategoriesViewController: UIViewController {
     
     private func setupTitleLable() {
         titleLabel = UILabel()
-        titleLabel.text = CategoriesString.categoryLabel.localized
+        titleLabel.text = LocalizedStrings.categoryLabel.localized
         titleLabel.font = .systemFont(ofSize: 24, weight: .heavy)
         titleLabel.textColor = .black
         

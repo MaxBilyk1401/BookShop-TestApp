@@ -7,10 +7,10 @@
 
 import Foundation
 
-enum CategoriesString: String {
+enum LocalizedStrings: String {
     case categoryLabel
     
-    var localized: String {
+    var categoriesLocalized: String {
         NSLocalizedString(String(describing: Self.self) + "_\(rawValue)", comment: "")
     }
 }

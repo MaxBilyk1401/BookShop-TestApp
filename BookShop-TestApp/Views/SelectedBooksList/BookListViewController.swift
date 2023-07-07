@@ -55,7 +55,7 @@ final class BookListViewController: UIViewController {
     
     private func setupTitleLabel() {
         titleLabel = UILabel()
-        titleLabel.text = "Selected books"
+        titleLabel.text = LocalizedStrings.bookLabel.localized
         titleLabel.font = .systemFont(ofSize: 24, weight: .heavy)
         titleLabel.textColor = .black
         

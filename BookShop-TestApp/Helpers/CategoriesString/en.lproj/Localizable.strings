@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  BookShop-TestApp
+
+  Created by Maxos on 7/7/23.
+  
+*/
+"LocalizedStrings_categoryLabel" = "Categories";
+"LocalizedStrings_bookLabel" = "Selected books";

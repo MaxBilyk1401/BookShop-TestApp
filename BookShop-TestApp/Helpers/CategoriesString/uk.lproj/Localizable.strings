@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  BookShop-TestApp
+
+  Created by Maxos on 7/7/23.
+  
+*/
+"LocalizedStrings_categoryLabel" = "Категорії";
+"LocalizedStrings_bookLabel" = "Вибрані книги";

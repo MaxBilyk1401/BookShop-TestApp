@@ -37,7 +37,7 @@
 		9D3277672A5752500071F6A7 /* NetworkBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277662A5752500071F6A7 /* NetworkBookModel.swift */; };
 		9D3277692A57553F0071F6A7 /* CoreDataBooksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277682A57553F0071F6A7 /* CoreDataBooksService.swift */; };
 		9D32776B2A5756160071F6A7 /* LocalBooksServiceWithNetworkFallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32776A2A5756160071F6A7 /* LocalBooksServiceWithNetworkFallBack.swift */; };
-		9D32776E2A5773070071F6A7 /* CategoriesString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32776D2A5773070071F6A7 /* CategoriesString.swift */; };
+		9D32776E2A5773070071F6A7 /* LocalizedStrigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32776D2A5773070071F6A7 /* LocalizedStrigs.swift */; };
 		9D3277762A5774B90071F6A7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D3277782A5774B90071F6A7 /* Localizable.strings */; };
 		9D32777C2A577A300071F6A7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9D32777B2A577A300071F6A7 /* Kingfisher */; };
 		9D32777E2A577A4D0071F6A7 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32777D2A577A4D0071F6A7 /* UIImage+Extension.swift */; };
@@ -77,7 +77,7 @@
 		9D3277662A5752500071F6A7 /* NetworkBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkBookModel.swift; sourceTree = "<group>"; };
 		9D3277682A57553F0071F6A7 /* CoreDataBooksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataBooksService.swift; sourceTree = "<group>"; };
 		9D32776A2A5756160071F6A7 /* LocalBooksServiceWithNetworkFallBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalBooksServiceWithNetworkFallBack.swift; sourceTree = "<group>"; };
-		9D32776D2A5773070071F6A7 /* CategoriesString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesString.swift; sourceTree = "<group>"; };
+		9D32776D2A5773070071F6A7 /* LocalizedStrigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrigs.swift; sourceTree = "<group>"; };
 		9D3277772A5774B90071F6A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9D3277792A5774CD0071F6A7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9D32777D2A577A4D0071F6A7 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -146,7 +146,6 @@
 				9D3277252A536DA60071F6A7 /* CategoriesTableViewCell.swift */,
 				9D32771B2A535DEB0071F6A7 /* CategoriesViewModel.swift */,
 				9D3277222A5367AF0071F6A7 /* CategoriesUIComposer.swift */,
-				9D32776C2A5772EE0071F6A7 /* CategoriesString */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -165,6 +164,7 @@
 		9D3277322A5623180071F6A7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				9D32776C2A5772EE0071F6A7 /* CategoriesString */,
 				9D3277292A55789C0071F6A7 /* Color+Extension.swift */,
 				9D32777D2A577A4D0071F6A7 /* UIImage+Extension.swift */,
 			);
@@ -252,7 +252,7 @@
 		9D32776C2A5772EE0071F6A7 /* CategoriesString */ = {
 			isa = PBXGroup;
 			children = (
-				9D32776D2A5773070071F6A7 /* CategoriesString.swift */,
+				9D32776D2A5773070071F6A7 /* LocalizedStrigs.swift */,
 				9D3277782A5774B90071F6A7 /* Localizable.strings */,
 			);
 			path = CategoriesString;
@@ -340,7 +340,7 @@
 			files = (
 				9D32771A2A535AC30071F6A7 /* NetworkCategoriesResponse.swift in Sources */,
 				9D3277232A5367AF0071F6A7 /* CategoriesUIComposer.swift in Sources */,
-				9D32776E2A5773070071F6A7 /* CategoriesString.swift in Sources */,
+				9D32776E2A5773070071F6A7 /* LocalizedStrigs.swift in Sources */,
 				9D3277652A5752410071F6A7 /* NetworkBooksResponse.swift in Sources */,
 				9D3277432A56C2860071F6A7 /* CategoryModel.swift in Sources */,
 				9D3277582A56FD470071F6A7 /* LoadService.swift in Sources */,
