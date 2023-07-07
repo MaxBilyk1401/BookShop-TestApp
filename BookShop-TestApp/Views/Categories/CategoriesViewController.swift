@@ -86,8 +86,9 @@ final class CategoriesViewController: UIViewController {
 
 extension CategoriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let category = (list[indexPath.row].displayName)
+        let category = (list[indexPath.row].encodeName)
         router.showSelectedBooksList(categoryName: category)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -97,7 +98,7 @@ extension CategoriesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesTableViewCell.identifier) as! CategoriesTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesTableViewCell.identifier, for: indexPath) as! CategoriesTableViewCell
         cell.setupModel(list[indexPath.row])
         
         return cell

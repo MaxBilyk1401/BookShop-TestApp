@@ -13,12 +13,10 @@ final class BookListViewController: UIViewController {
     private var viewModel: BooksViewModel
     private var tableView: UITableView!
     private var titleLabel: UILabel!
-    private var categoryName: String!
     
-    init(router: Router, viewModel: BooksViewModel, categoryName: String) {
+    init(router: Router, viewModel: BooksViewModel) {
         self.router = router
         self.viewModel = viewModel
-        self.categoryName = categoryName
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,7 +30,8 @@ final class BookListViewController: UIViewController {
         setupTitleLabel()
         setupTableView()
         bindOnViewModel()
-        viewModel.fetchData(categoryName: categoryName)
+        viewModel.fetchData()
+        
     }
     
     private func bindOnViewModel() {
@@ -45,8 +44,9 @@ final class BookListViewController: UIViewController {
             }
         }
         
-        viewModel.onRefresh = { [weak self] books in
+        viewModel.onRefresh = { [weak self] list in
             guard let self else { return }
+            print(list.count)
             self.list = list
             tableView.reloadData()
         }
@@ -72,6 +72,8 @@ final class BookListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.refreshControl = controll
+        tableView.estimatedRowHeight = 120.0
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(BookTableViewCell.self, forCellReuseIdentifier: BookTableViewCell.identifier)
         
         view.addSubview(tableView)
@@ -91,14 +93,14 @@ extension BookListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: BookTableViewCell.identifier) as! BookTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: BookTableViewCell.identifier, for: indexPath) as! BookTableViewCell
         cell.setup(list[indexPath.row])
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 72.0
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 100.0
+//    }
 }
 
 extension BookListViewController: UITableViewDelegate {

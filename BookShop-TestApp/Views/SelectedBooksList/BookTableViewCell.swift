@@ -7,9 +7,10 @@
 
 import UIKit
 
-final class BookTableViewCell: UITableViewCell {
-    static let identifier = "Cell"
-    
+class BookTableViewCell: UITableViewCell {
+    static var identifier: String {
+        return String(describing: Self.self)
+    }
     private var nameLabel: UILabel!
     private var descriptionLabel: UILabel!
     private var authorLabel: UILabel!
@@ -42,13 +43,15 @@ final class BookTableViewCell: UITableViewCell {
     
     private func setupIconBook() {
         bookImage = UIImageView()
+        bookImage.contentMode = .scaleAspectFill
         
         contentView.addSubview(bookImage)
         bookImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            contentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            contentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 16),
+            bookImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 36),
+            bookImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            bookImage.widthAnchor.constraint(equalToConstant: 72),
+            bookImage.heightAnchor.constraint(equalToConstant: 72),
         ])
     }
     
@@ -61,8 +64,8 @@ final class BookTableViewCell: UITableViewCell {
         contentView.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            nameLabel.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 24),
+            nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             
         ])
     }
@@ -74,10 +77,10 @@ final class BookTableViewCell: UITableViewCell {
         authorLabel.numberOfLines = 0
         
         contentView.addSubview(authorLabel)
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        authorLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            authorLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16),
-            authorLabel.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor, constant: 16),
+            authorLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
+            authorLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
         ])
     }
     
@@ -90,8 +93,8 @@ final class BookTableViewCell: UITableViewCell {
         contentView.addSubview(publisherLabel)
         publisherLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            publisherLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 16),
-            publisherLabel.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor, constant: 16),
+            publisherLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8),
+            publisherLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
         ])
     }
     
@@ -104,8 +107,10 @@ final class BookTableViewCell: UITableViewCell {
         contentView.addSubview(descriptionLabel)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: publisherLabel.bottomAnchor, constant: 16),
-            descriptionLabel.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor, constant: 16),
+            descriptionLabel.topAnchor.constraint(equalTo: publisherLabel.bottomAnchor, constant: 8),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            descriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
         ])
     }
     
@@ -118,9 +123,9 @@ final class BookTableViewCell: UITableViewCell {
         contentView.addSubview(rankLabel)
         rankLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            rankLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
-            rankLabel.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor, constant: 16),
-            rankLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 16),
+            rankLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
+            rankLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            rankLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
         ])
     }
 }

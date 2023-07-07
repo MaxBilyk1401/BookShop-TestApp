@@ -60,7 +60,7 @@ extension CoreDataCategoriesService: SaveCategorisService {
                 let localModel = LocalCategoryModel(context: context)
                 localModel.displayName = model.displayName
                 localModel.listName = model.listName
-//                localModel.encodeName = model.encodeName
+                localModel.encodeName = model.encodeName
                 localModel.oldestPublishedDate = model.oldestPublishedDate
                 localModel.newestPublishedDate = model.newestPublishedDate
                 return localModel
@@ -93,13 +93,13 @@ private extension CategoryModel {
     init?(from localModel: LocalCategoryModel) {
         guard let displayName = localModel.displayName,
               let listName = localModel.listName,
-//              let encodeName = localModel.encodeName,
+              let encodeName = localModel.encodeName,
               let oldestPublishedDate = localModel.oldestPublishedDate,
               let newestPublishedDate = localModel.newestPublishedDate else { return nil }
 
         self.displayName = displayName
         self.listName = listName
-//        self.encodeName = encodeName
+        self.encodeName = encodeName
         self.oldestPublishedDate = oldestPublishedDate
         self.newestPublishedDate = newestPublishedDate
     }

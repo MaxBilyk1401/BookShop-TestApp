@@ -10,15 +10,17 @@ import Alamofire
 
 final class BooksViewModel {
     private let booksService: BooksService
+    private let categoryName: String
     var onLoading: ((Bool) -> Void)?
     var onRefresh: (([BooksModel]) -> Void)?
     var onFailure: ((String?) -> Void)?
     
-    init(booksService: BooksService) {
+    init(booksService: BooksService, categoryName: String) {
         self.booksService = booksService
+        self.categoryName = categoryName
     }
     
-    func fetchData(categoryName: String) {
+    func fetchData() {
         onLoading?(true)
         onFailure?(nil)
         booksService.loadData(categoryName: categoryName) { [weak self] result in

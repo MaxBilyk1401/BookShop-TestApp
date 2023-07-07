@@ -38,7 +38,7 @@ private extension CategoryModel {
     init(from networkModel: NetworkCategoryModel) {
         self.displayName = networkModel.displayName
         self.listName = networkModel.listName
-//        self.encodeName = networkModel.encodeName
+        self.encodeName = networkModel.encodeName
         self.newestPublishedDate = networkModel.newestPublishedDate
         self.oldestPublishedDate = networkModel.oldestPublishedDate
     }
