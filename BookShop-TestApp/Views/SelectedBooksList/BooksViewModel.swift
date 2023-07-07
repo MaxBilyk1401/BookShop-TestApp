@@ -12,7 +12,7 @@ final class BooksViewModel {
     private let booksService: BooksService
     private let categoryName: String
     var onLoading: ((Bool) -> Void)?
-    var onRefresh: (([BooksModel]) -> Void)?
+    var onLoadSuccess: (([BooksModel]) -> Void)?
     var onFailure: ((String?) -> Void)?
     
     init(booksService: BooksService, categoryName: String) {
@@ -28,7 +28,7 @@ final class BooksViewModel {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let success):
-                    self.onRefresh?(success)
+                    self.onLoadSuccess?(success)
                     print(success)
                 case .failure:
                     self.onFailure?("Oops, something went wrong!")

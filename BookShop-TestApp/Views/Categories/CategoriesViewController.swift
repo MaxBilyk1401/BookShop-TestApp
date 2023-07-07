@@ -31,6 +31,7 @@ final class CategoriesViewController: UIViewController {
         setupTableVeiw()
         bindOnViewModel()
         
+        overrideUserInterfaceStyle = .light
         viewModel.fetchData()
     }
     
@@ -44,10 +45,21 @@ final class CategoriesViewController: UIViewController {
             }
         }
         
-        viewModel.onRefresh = { [weak self] list in
+        viewModel.onLoadSuccess = { [weak self] list in
             guard let self else { return }
             self.list = list
             categoriesTableView.reloadData()
+        }
+        
+        viewModel.onFailure = { [weak self] failure in
+            guard let self else { return }
+            guard let failure else { return }
+            let alert = UIAlertController(title: String(failure),
+                                          message: nil,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK",
+                                          style: .cancel))
+            present(alert, animated: true)
         }
     }
     
@@ -68,6 +80,7 @@ final class CategoriesViewController: UIViewController {
     private func setupTableVeiw() {
         let controll = UIRefreshControl()
         categoriesTableView = UITableView()
+        controll.addTarget(self, action: #selector(onCategoriesLoading), for: .valueChanged)
         categoriesTableView.dataSource = self
         categoriesTableView.delegate = self
         categoriesTableView.refreshControl = controll
@@ -81,6 +94,10 @@ final class CategoriesViewController: UIViewController {
             categoriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             categoriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    @objc private func onCategoriesLoading() {
+        viewModel.fetchData()
     }
 }
 

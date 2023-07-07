@@ -32,7 +32,7 @@ final class BookListViewController: UIViewController {
         setupTableView()
         bindOnViewModel()
         viewModel.fetchData()
-        
+        overrideUserInterfaceStyle = .light
     }
     
     private func bindOnViewModel() {
@@ -45,11 +45,22 @@ final class BookListViewController: UIViewController {
             }
         }
         
-        viewModel.onRefresh = { [weak self] list in
+        viewModel.onLoadSuccess = { [weak self] list in
             guard let self else { return }
             print(list.count)
             self.list = list
             tableView.reloadData()
+        }
+        
+        viewModel.onFailure = { [weak self] failure in
+            guard let self else { return }
+            guard let failure else { return }
+            let alert = UIAlertController(title: String(failure),
+                                          message: nil,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK",
+                                          style: .cancel))
+            present(alert, animated: true)
         }
     }
     
@@ -70,6 +81,7 @@ final class BookListViewController: UIViewController {
     private func setupTableView() {
         let controll = UIRefreshControl()
         tableView = UITableView()
+        controll.addTarget(self, action: #selector(onBooksLoading), for: .valueChanged)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.refreshControl = controll
@@ -85,6 +97,10 @@ final class BookListViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    @objc private func onBooksLoading() {
+        viewModel.fetchData()
     }
 }
 

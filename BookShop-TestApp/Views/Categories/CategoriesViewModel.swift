@@ -10,7 +10,7 @@ import Foundation
 final class CategoriesViewModel {
     private let categoriesService: CategoriesService
     var onLoading: ((Bool) -> Void)?
-    var onRefresh: (([CategoryModel]) -> Void)?
+    var onLoadSuccess: (([CategoryModel]) -> Void)?
     var onFailure: ((String?) -> Void)?
     
     init(categoriesService: CategoriesService) {
@@ -25,7 +25,7 @@ final class CategoriesViewModel {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let success):
-                    self.onRefresh?(success)
+                    self.onLoadSuccess?(success)
                     print(success)
                 case .failure:
                     self.onFailure?("Oops, something went wrong!")
