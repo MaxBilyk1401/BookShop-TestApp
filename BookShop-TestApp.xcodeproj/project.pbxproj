@@ -29,10 +29,6 @@
 		9D3277432A56C2860071F6A7 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277422A56C2860071F6A7 /* CategoryModel.swift */; };
 		9D3277472A56CB4F0071F6A7 /* CoreDataCategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277462A56CB4F0071F6A7 /* CoreDataCategoriesService.swift */; };
 		9D3277492A56E0EA0071F6A7 /* LocalCategoriesServiceWithNetworkFallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277482A56E0EA0071F6A7 /* LocalCategoriesServiceWithNetworkFallBack.swift */; };
-		9D3277502A56FBE10071F6A7 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 9D32774F2A56FBE10071F6A7 /* CombineMoya */; };
-		9D3277522A56FBE10071F6A7 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9D3277512A56FBE10071F6A7 /* Moya */; };
-		9D3277542A56FBE10071F6A7 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 9D3277532A56FBE10071F6A7 /* ReactiveMoya */; };
-		9D3277562A56FBE10071F6A7 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 9D3277552A56FBE10071F6A7 /* RxMoya */; };
 		9D3277582A56FD470071F6A7 /* LoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3277572A56FD470071F6A7 /* LoadService.swift */; };
 		9D32775B2A574DAD0071F6A7 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32775A2A574DAD0071F6A7 /* BookService.swift */; };
 		9D32775D2A574E160071F6A7 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32775C2A574E160071F6A7 /* BookModel.swift */; };
@@ -45,6 +41,7 @@
 		9D3277762A5774B90071F6A7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D3277782A5774B90071F6A7 /* Localizable.strings */; };
 		9D32777C2A577A300071F6A7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9D32777B2A577A300071F6A7 /* Kingfisher */; };
 		9D32777E2A577A4D0071F6A7 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32777D2A577A4D0071F6A7 /* UIImage+Extension.swift */; };
+		9D3277812A5875980071F6A7 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9D3277802A5875980071F6A7 /* Moya */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +81,7 @@
 		9D3277772A5774B90071F6A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9D3277792A5774CD0071F6A7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9D32777D2A577A4D0071F6A7 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		9D3277822A5879980071F6A7 /* BookShop_TestApp v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BookShop_TestApp v2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,10 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D3277522A56FBE10071F6A7 /* Moya in Frameworks */,
-				9D3277502A56FBE10071F6A7 /* CombineMoya in Frameworks */,
-				9D3277562A56FBE10071F6A7 /* RxMoya in Frameworks */,
-				9D3277542A56FBE10071F6A7 /* ReactiveMoya in Frameworks */,
+				9D3277812A5875980071F6A7 /* Moya in Frameworks */,
 				9D32777C2A577A300071F6A7 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,11 +275,8 @@
 			);
 			name = "BookShop-TestApp";
 			packageProductDependencies = (
-				9D32774F2A56FBE10071F6A7 /* CombineMoya */,
-				9D3277512A56FBE10071F6A7 /* Moya */,
-				9D3277532A56FBE10071F6A7 /* ReactiveMoya */,
-				9D3277552A56FBE10071F6A7 /* RxMoya */,
 				9D32777B2A577A300071F6A7 /* Kingfisher */,
+				9D3277802A5875980071F6A7 /* Moya */,
 			);
 			productName = "BookShop-TestApp";
 			productReference = 9D3276FC2A5218E00071F6A7 /* BookShop-TestApp.app */;
@@ -316,8 +308,8 @@
 			);
 			mainGroup = 9D3276F32A5218E00071F6A7;
 			packageReferences = (
-				9D32774E2A56FBE10071F6A7 /* XCRemoteSwiftPackageReference "Moya" */,
 				9D32777A2A577A300071F6A7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				9D32777F2A5875980071F6A7 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 9D3276FD2A5218E00071F6A7 /* Products */;
 			projectDirPath = "";
@@ -598,14 +590,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9D32774E2A56FBE10071F6A7 /* XCRemoteSwiftPackageReference "Moya" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Moya/Moya";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 15.0.0;
-			};
-		};
 		9D32777A2A577A300071F6A7 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -614,33 +598,26 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		9D32777F2A5875980071F6A7 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9D32774F2A56FBE10071F6A7 /* CombineMoya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9D32774E2A56FBE10071F6A7 /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = CombineMoya;
-		};
-		9D3277512A56FBE10071F6A7 /* Moya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9D32774E2A56FBE10071F6A7 /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = Moya;
-		};
-		9D3277532A56FBE10071F6A7 /* ReactiveMoya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9D32774E2A56FBE10071F6A7 /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = ReactiveMoya;
-		};
-		9D3277552A56FBE10071F6A7 /* RxMoya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9D32774E2A56FBE10071F6A7 /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = RxMoya;
-		};
 		9D32777B2A577A300071F6A7 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9D32777A2A577A300071F6A7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		9D3277802A5875980071F6A7 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D32777F2A5875980071F6A7 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
 		};
 /* End XCSwiftPackageProductDependency section */
 
@@ -648,9 +625,10 @@
 		9D3277082A5218E00071F6A7 /* BookShop_TestApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9D3277822A5879980071F6A7 /* BookShop_TestApp v2.xcdatamodel */,
 				9D3277092A5218E00071F6A7 /* BookShop_TestApp.xcdatamodel */,
 			);
-			currentVersion = 9D3277092A5218E00071F6A7 /* BookShop_TestApp.xcdatamodel */;
+			currentVersion = 9D3277822A5879980071F6A7 /* BookShop_TestApp v2.xcdatamodel */;
 			path = BookShop_TestApp.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

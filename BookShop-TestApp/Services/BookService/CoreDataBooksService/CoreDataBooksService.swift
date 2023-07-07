@@ -60,6 +60,7 @@ extension CoreDataBooksService: SaveBooksService {
                 localModel.author = model.author
                 localModel.bookDescription = model.description
                 localModel.bookImage = model.bookImage
+                localModel.buyURl = model.buyURl
                 localModel.publisher = model.publisher
                 localModel.rank = Int64(model.rank)
                 localModel.title = model.title
@@ -99,6 +100,7 @@ private extension BooksModel {
               let description = localModel.bookDescription,
               let author = localModel.author,
               let publisher = localModel.publisher,
+              let buyURl = localModel.buyURl,
               let bookImage = localModel.bookImage else { return nil }
         
         self.title = title
@@ -106,6 +108,7 @@ private extension BooksModel {
         self.author = author
         self.publisher = publisher
         self.bookImage = bookImage
+        self.buyURl = buyURl
         self.rank = Int(localModel.rank)
     }
 }

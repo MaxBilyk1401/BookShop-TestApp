@@ -13,10 +13,12 @@ struct NetworkBookModel: Decodable {
     let author: String
     let publisher: String
     let bookImage: URL
+    let buyURl: URL
     let rank: Int
     
     enum CodingKeys: String, CodingKey {
         case title, description, author, publisher, rank
         case bookImage = "book_image"
+        case buyURl = "amazon_product_url" 
     }
 }

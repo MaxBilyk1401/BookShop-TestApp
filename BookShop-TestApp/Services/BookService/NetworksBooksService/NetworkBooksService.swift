@@ -42,6 +42,7 @@ private extension BooksModel {
         self.author = networkBook.author
         self.publisher = networkBook.publisher
         self.bookImage = networkBook.bookImage
+        self.buyURl = networkBook.buyURl
         self.rank = networkBook.rank
     }
 }

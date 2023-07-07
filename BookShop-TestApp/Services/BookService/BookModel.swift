@@ -13,5 +13,6 @@ struct BooksModel {
     let author: String
     let publisher: String 
     let bookImage: URL
+    let buyURl: URL
     let rank: Int
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 final class BookListViewController: UIViewController {
     private var list: [BooksModel] = []
@@ -97,12 +98,14 @@ extension BookListViewController: UITableViewDataSource {
         cell.setup(list[indexPath.row])
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 100.0
-//    }
 }
 
 extension BookListViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedURl = list[indexPath.row].buyURl
+        let safariViewController = SFSafariViewController(url: selectedURl)
+        present(safariViewController, animated: true)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
