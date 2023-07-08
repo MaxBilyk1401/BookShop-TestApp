@@ -10,6 +10,8 @@ import Foundation
 enum LocalizedStrings: String {
     case categoryLabel
     case bookLabel
+    case details
+    case OK
     
     var localized: String {
         NSLocalizedString(String(describing: Self.self) + "_\(rawValue)", comment: "")

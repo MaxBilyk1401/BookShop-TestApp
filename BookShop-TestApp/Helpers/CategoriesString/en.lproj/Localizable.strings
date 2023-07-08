@@ -7,3 +7,5 @@
 */
 "LocalizedStrings_categoryLabel" = "Categories";
 "LocalizedStrings_bookLabel" = "Selected books";
+"LocalizedStrings_details" = "Details";
+"LocalizedStrings_OK" = "OK";

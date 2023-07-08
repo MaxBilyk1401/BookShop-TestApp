@@ -31,10 +31,11 @@ final class BookListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hexString: AllColors.mainColor.name)
         setupTitleLabel()
-//        setupTableView()
+        setupWrapView()
+        setupCollectionView()
         bindOnViewModel()
         viewModel.fetchData()
-        overrideUserInterfaceStyle = .light
+        overrideUserInterfaceStyle = .dark
     }
     
     private func bindOnViewModel() {
@@ -59,7 +60,7 @@ final class BookListViewController: UIViewController {
             let alert = UIAlertController(title: String(failure),
                                           message: nil,
                                           preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK",
+            alert.addAction(UIAlertAction(title: LocalizedStrings.OK.localized,
                                           style: .cancel))
             present(alert, animated: true)
         }
@@ -146,7 +147,7 @@ final class BookListViewController: UIViewController {
     }
 }
 
-extension BookListViewController: UICollectionViewDataSource {
+extension BookListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -155,33 +156,24 @@ extension BookListViewController: UICollectionViewDataSource {
         return list.count
     }
     
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCollectionViewCell.identifier, for: indexPath) as! BookCollectionViewCell
+        cell.setup(list[indexPath.row])
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (UIScreen.main.bounds.width - 32)
+        let height = width / 398 * 424
+        return CGSize(width: width, height: height)
+    }
 }
 
 extension BookListViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedURl = list[indexPath.row].buyURl
+                let safariViewController = SFSafariViewController(url: selectedURl)
+                present(safariViewController, animated: true)
+    }
 }
-
-//extension BookListViewController: UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        list.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: BookTableViewCell.identifier, for: indexPath) as! BookTableViewCell
-//        cell.setup(list[indexPath.row])
-//        return cell
-//    }
-//}
-
-//extension BookListViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let selectedURl = list[indexPath.row].buyURl
-//        let safariViewController = SFSafariViewController(url: selectedURl)
-//        present(safariViewController, animated: true)
-//
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
-//}
