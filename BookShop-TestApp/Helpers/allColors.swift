@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum allColors {
+enum AllColors {
     case mainColor
     case blackColor
     case accentColor

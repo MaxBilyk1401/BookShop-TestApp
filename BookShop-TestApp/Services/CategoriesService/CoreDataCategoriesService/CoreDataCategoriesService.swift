@@ -69,7 +69,6 @@ extension CoreDataCategoriesService: SaveCategorisService {
             localCategoriesList.categories = NSOrderedSet(array: localCategories)
 
             try context.save()
-            print(context)
             completion(.success(()))
         } catch {
             completion(.failure(error))

@@ -18,9 +18,6 @@ final class CategoriesViewController: UIViewController {
     private var flowLayout: UICollectionViewFlowLayout!
     
     init(router: Router, viewModel: CategoriesViewModel!) {
-        let flow = UICollectionViewFlowLayout()
-        flow.minimumLineSpacing = 16.0
-        flow.minimumInteritemSpacing = 16.0
         self.router = router
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -32,12 +29,10 @@ final class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(hexString: allColors.mainColor.name)
+        view.backgroundColor = UIColor(hexString: AllColors.mainColor.name)
         setupWrapView()
         setupCollectionVeiw()
         bindOnViewModel()
-        
-        
         
         overrideUserInterfaceStyle = .light
         viewModel.fetchData()
@@ -56,6 +51,7 @@ final class CategoriesViewController: UIViewController {
         viewModel.onLoadSuccess = { [weak self] list in
             guard let self else { return }
             self.list = list
+            print(list)
             categoriesCollectionView.reloadData()
         }
         
@@ -75,7 +71,7 @@ final class CategoriesViewController: UIViewController {
         titleLabel = UILabel()
         appIcon = UIImageView()
         wrapView = UIView()
-        wrapView.backgroundColor = UIColor(hexString: allColors.mainColor.name)
+        wrapView.backgroundColor = UIColor(hexString: AllColors.mainColor.name)
         
         view.addSubview(wrapView)
         wrapView.translatesAutoresizingMaskIntoConstraints = false
@@ -85,7 +81,7 @@ final class CategoriesViewController: UIViewController {
             wrapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
         
-        appIcon.image = UIImage(named: allImages.appIcon.name)
+        appIcon.image = UIImage(named: AllImages.appIcon.name)
         appIcon.contentMode = .scaleAspectFit
         wrapView.addSubview(appIcon)
         appIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -99,7 +95,7 @@ final class CategoriesViewController: UIViewController {
         
         titleLabel.text = LocalizedStrings.categoryLabel.localized
         titleLabel.font = .systemFont(ofSize: 24, weight: .heavy)
-        titleLabel.textColor = UIColor(hexString: allColors.whiteColor.name)
+        titleLabel.textColor = UIColor(hexString: AllColors.whiteColor.name)
         wrapView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -112,13 +108,13 @@ final class CategoriesViewController: UIViewController {
     private func setupCollectionVeiw() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumInteritemSpacing = 16.0
-        flowLayout.scrollDirection = .vertical
+//        flowLayout.scrollDirection = .vertical
+        categoriesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         
         let controll = UIRefreshControl()
-        categoriesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         controll.addTarget(self, action: #selector(onCategoriesLoading), for: .valueChanged)
         
-        categoriesCollectionView.backgroundColor = UIColor(hexString: allColors.blackColor.name)
+        categoriesCollectionView.backgroundColor = UIColor(hexString: AllColors.blackColor.name)
         categoriesCollectionView.dataSource = self
         categoriesCollectionView.delegate = self
         categoriesCollectionView.refreshControl = controll
@@ -139,26 +135,20 @@ final class CategoriesViewController: UIViewController {
     }
 }
 
-//extension CategoriesViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let category = (list[indexPath.row].encodeName)
-//        router.showSelectedBooksList(categoryName: category)
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
-//}
-
 extension CategoriesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
-
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return list.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.identifier, for: indexPath) as! CategoriesCollectionViewCell
-        cell.setupModel(list[indexPath.row])
+        let item = list[indexPath.row]
+        print(item)
+        cell.setup(item)
         return cell
     }
     
@@ -170,5 +160,8 @@ extension CategoriesViewController: UICollectionViewDataSource, UICollectionView
 }
 
 extension CategoriesViewController: UICollectionViewDelegate {
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let category = (list[indexPath.row].encodeName)
+        router.showSelectedBooksList(categoryName: category)
+    }
 }

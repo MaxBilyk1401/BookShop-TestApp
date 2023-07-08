@@ -29,7 +29,7 @@ final class BooksViewModel {
                 switch result {
                 case .success(let success):
                     self.onLoadSuccess?(success)
-                    print(success)
+//                    print(success)
                 case .failure:
                     self.onFailure?("Oops, something went wrong!")
                 }

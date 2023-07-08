@@ -22,15 +22,12 @@ final class LocalBooksServiceWithNetworkFallBack: BooksService {
         localService.loadData(categoryName: categoryName) { [weak self] localResult in
             guard let self else { return }
             
-            print("RESULT__LCOAL \(localResult)")
-            
             switch localResult {
             case .success:
                 completion(localResult)
                 
             case .failure:
                 self.networkService.loadData(categoryName: categoryName) { networkResult in
-                    print("RESULT__NETWORK \(networkResult)")
                     switch networkResult {
                     case .success(let books):
                         self.saveIgnoringHandling(books, categoryName: categoryName)

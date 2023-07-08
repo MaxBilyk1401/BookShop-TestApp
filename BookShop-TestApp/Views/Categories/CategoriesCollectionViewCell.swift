@@ -25,19 +25,19 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         setupLayout()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
-    func setupModel(_ model: CategoryModel) {
-        titleLabel.text = model.listName
+    func setup(_ model: CategoryModel) {
+        titleLabel.text = model.displayName
         dateLabel.text = model.newestPublishedDate
     }
     
     private func setupTitleLabel() {
         titleLabel = UILabel()
         titleLabel.font = .systemFont(ofSize: 18, weight: .bold)
-        titleLabel.textColor = UIColor(hexString: allColors.whiteColor.name)
+        titleLabel.textColor = UIColor(hexString: AllColors.whiteColor.name)
         titleLabel.numberOfLines = 0
 
         contentView.addSubview(titleLabel)
@@ -50,7 +50,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     
     private func setupDateImage() {
         dateImage = UIImageView()
-        dateImage.image = UIImage(named: allImages.dateImage.name)
+        dateImage.image = UIImage(named: AllImages.dateImage.name)
         
         contentView.addSubview(dateImage)
         dateImage.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +65,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     private func setupDateLabel() {
         dateLabel = UILabel()
         dateLabel.font = .systemFont(ofSize: 14, weight: .regular)
-        dateLabel.textColor = UIColor(hexString: allColors.whiteColor.name)
+        dateLabel.textColor = UIColor(hexString: AllColors.whiteColor.name)
         
         contentView.addSubview(dateLabel)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -77,7 +77,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     
     private func setupArrowImage() {
         arrowImage = UIImageView()
-        arrowImage.image = UIImage(named: allImages.arrowImage.name)
+        arrowImage.image = UIImage(named: AllImages.arrowImage.name)
         
         contentView.addSubview(arrowImage)
         arrowImage.translatesAutoresizingMaskIntoConstraints = false
@@ -89,9 +89,9 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     
     private func setupLayout() {
         layer.cornerRadius = 16
-        backgroundColor = UIColor(hexString: allColors.blackColor.name)
+        backgroundColor = UIColor(hexString: AllColors.blackColor.name)
         layer.borderWidth = 0.40
-        layer.borderColor = UIColor(hexString: allColors.whiteTransparentColor.name).cgColor
+        layer.borderColor = UIColor(hexString: AllColors.whiteTransparentColor.name).cgColor
         layer.masksToBounds = false
     }
 }

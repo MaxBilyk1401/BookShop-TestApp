@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum allImages {
+enum AllImages {
     case appIcon
     case dateImage
     case authorImage

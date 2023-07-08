@@ -36,7 +36,6 @@ class LocalCategoriesServiceWithNetworkFallBack: CategoriesService {
                     case .failure:
                         break
                     }
-                    
                     completion(networkResult)
                 }
             }

@@ -73,7 +73,7 @@ extension CoreDataBooksService: SaveBooksService {
             localBooksList.categoryName = categoryName
             
             try context.save()
-            print(context)
+//            print(context)
             completion(.success(()))
         } catch {
             completion(.failure(error))

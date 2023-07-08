@@ -47,7 +47,7 @@ final class BookListViewController: UIViewController {
         
         viewModel.onLoadSuccess = { [weak self] list in
             guard let self else { return }
-            print(list.count)
+//            print(list.count)
             self.list = list
             tableView.reloadData()
         }

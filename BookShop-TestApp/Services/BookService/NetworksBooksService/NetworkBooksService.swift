@@ -24,7 +24,6 @@ struct NetworkBooksService: BooksService {
                     let buissnesModel = result.results.books.map { model in BooksModel(from: model) }
                     completion(.success(buissnesModel))
                 } catch {
-                    print(error)
                     completion(.failure(error))
                 }
             case .failure(let error):
