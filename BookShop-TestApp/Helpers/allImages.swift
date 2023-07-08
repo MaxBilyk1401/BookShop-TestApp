@@ -8,6 +8,7 @@
 import Foundation
 
 enum allImages {
+    case appIcon
     case dateImage
     case authorImage
     case publisherImage
@@ -15,6 +16,8 @@ enum allImages {
     
     var name: String {
         switch self {
+        case .appIcon:
+            return "appIcon"
         case .dateImage:
             return "date"
         case .authorImage:

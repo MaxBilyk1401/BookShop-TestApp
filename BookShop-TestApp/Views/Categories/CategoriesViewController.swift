@@ -10,11 +10,17 @@ import UIKit
 final class CategoriesViewController: UIViewController {
     private var list: [CategoryModel] = []
     private var router: Router
+    private var wrapView: UIView!
+    private var appIcon: UIImageView!
     private var viewModel: CategoriesViewModel
     private var titleLabel: UILabel!
     private var categoriesCollectionView: UICollectionView!
+    private var flowLayout: UICollectionViewFlowLayout!
     
-    init( router: Router, viewModel: CategoriesViewModel!) {
+    init(router: Router, viewModel: CategoriesViewModel!) {
+        let flow = UICollectionViewFlowLayout()
+        flow.minimumLineSpacing = 16.0
+        flow.minimumInteritemSpacing = 16.0
         self.router = router
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -26,10 +32,12 @@ final class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        setupTitleLable()
-        setupTableVeiw()
+        view.backgroundColor = UIColor(hexString: allColors.mainColor.name)
+        setupWrapView()
+        setupCollectionVeiw()
         bindOnViewModel()
+        
+        
         
         overrideUserInterfaceStyle = .light
         viewModel.fetchData()
@@ -63,33 +71,63 @@ final class CategoriesViewController: UIViewController {
         }
     }
     
-    private func setupTitleLable() {
+    private func setupWrapView() {
         titleLabel = UILabel()
+        appIcon = UIImageView()
+        wrapView = UIView()
+        wrapView.backgroundColor = UIColor(hexString: allColors.mainColor.name)
+        
+        view.addSubview(wrapView)
+        wrapView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            wrapView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 7.0),
+            wrapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            wrapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+        
+        appIcon.image = UIImage(named: allImages.appIcon.name)
+        appIcon.contentMode = .scaleAspectFit
+        wrapView.addSubview(appIcon)
+        appIcon.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            appIcon.topAnchor.constraint(equalTo: wrapView.topAnchor, constant: 8),
+            appIcon.leadingAnchor.constraint(equalTo: wrapView.leadingAnchor, constant: 16),
+            appIcon.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: 8),
+            appIcon.heightAnchor.constraint(equalToConstant: 40),
+            appIcon.widthAnchor.constraint(equalToConstant: 40)
+        ])
+        
         titleLabel.text = LocalizedStrings.categoryLabel.localized
         titleLabel.font = .systemFont(ofSize: 24, weight: .heavy)
-        titleLabel.textColor = .black
-        
-        view.addSubview(titleLabel)
+        titleLabel.textColor = UIColor(hexString: allColors.whiteColor.name)
+        wrapView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -24),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16)
+            titleLabel.topAnchor.constraint(equalTo: wrapView.topAnchor, constant: 16),
+            titleLabel.leadingAnchor.constraint(equalTo: appIcon.trailingAnchor, constant: 16),
+            titleLabel.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: 6)
         ])
     }
     
-    private func setupTableVeiw() {
+    private func setupCollectionVeiw() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumInteritemSpacing = 16.0
+        flowLayout.scrollDirection = .vertical
+        
         let controll = UIRefreshControl()
-        categoriesCollectionView = UICollectionView()
+        categoriesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         controll.addTarget(self, action: #selector(onCategoriesLoading), for: .valueChanged)
+        
+        categoriesCollectionView.backgroundColor = UIColor(hexString: allColors.blackColor.name)
         categoriesCollectionView.dataSource = self
         categoriesCollectionView.delegate = self
         categoriesCollectionView.refreshControl = controll
-//        categoriesCollectionView.register(CategoriesTableViewCell.self, forCellReuseIdentifier: CategoriesTableViewCell.identifier)
+        categoriesCollectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: CategoriesCollectionViewCell.identifier)
         
         view.addSubview(categoriesCollectionView)
         categoriesCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            categoriesCollectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            categoriesCollectionView.topAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: 16),
             categoriesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             categoriesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             categoriesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -108,34 +146,29 @@ final class CategoriesViewController: UIViewController {
 //        tableView.deselectRow(at: indexPath, animated: true)
 //    }
 //}
-//
-//extension CategoriesViewController: UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        list.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesTableViewCell.identifier, for: indexPath) as! CategoriesTableViewCell
-//        cell.setupModel(list[indexPath.row])
-//
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 72.0
-//    }
-//}
 
-extension CategoriesViewController: UICollectionViewDataSource {
+extension CategoriesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return 1
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return list.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.identifier, for: indexPath) as! CategoriesCollectionViewCell
+        cell.setupModel(list[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (UIScreen.main.bounds.width - 32)
+        let height = width / 398 * 86
+        return CGSize(width: width, height: height)
     }
 }
 
 extension CategoriesViewController: UICollectionViewDelegate {
-    
+
 }

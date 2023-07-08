@@ -44,6 +44,7 @@
 		9D3277812A5875980071F6A7 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9D3277802A5875980071F6A7 /* Moya */; };
 		9D6E27072A58B7A500C76AA0 /* allColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E27062A58B7A500C76AA0 /* allColors.swift */; };
 		9D6E27092A59844000C76AA0 /* allImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E27082A59843F00C76AA0 /* allImages.swift */; };
+		9D6E270B2A59906300C76AA0 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E270A2A59906300C76AA0 /* CategoriesCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		9D3277822A5879980071F6A7 /* BookShop_TestApp v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BookShop_TestApp v2.xcdatamodel"; sourceTree = "<group>"; };
 		9D6E27062A58B7A500C76AA0 /* allColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allColors.swift; sourceTree = "<group>"; };
 		9D6E27082A59843F00C76AA0 /* allImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allImages.swift; sourceTree = "<group>"; };
+		9D6E270A2A59906300C76AA0 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				9D3277032A5218E00071F6A7 /* CategoriesViewController.swift */,
+				9D6E270A2A59906300C76AA0 /* CategoriesCollectionViewCell.swift */,
 				9D3277252A536DA60071F6A7 /* CategoriesTableViewCell.swift */,
 				9D32771B2A535DEB0071F6A7 /* CategoriesViewModel.swift */,
 				9D3277222A5367AF0071F6A7 /* CategoriesUIComposer.swift */,
@@ -374,6 +377,7 @@
 				9D3277472A56CB4F0071F6A7 /* CoreDataCategoriesService.swift in Sources */,
 				9D3277282A544E7B0071F6A7 /* CategoriesService.swift in Sources */,
 				9D32777E2A577A4D0071F6A7 /* UIImage+Extension.swift in Sources */,
+				9D6E270B2A59906300C76AA0 /* CategoriesCollectionViewCell.swift in Sources */,
 				9D32772A2A55789C0071F6A7 /* Color+Extension.swift in Sources */,
 				9D32771E2A535E150071F6A7 /* NetworkCategoriesService.swift in Sources */,
 			);
