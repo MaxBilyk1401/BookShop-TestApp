@@ -12,7 +12,7 @@ final class CategoriesViewController: UIViewController {
     private var router: Router
     private var viewModel: CategoriesViewModel
     private var titleLabel: UILabel!
-    private var categoriesTableView: UITableView!
+    private var categoriesCollectionView: UICollectionView!
     
     init( router: Router, viewModel: CategoriesViewModel!) {
         self.router = router
@@ -39,16 +39,16 @@ final class CategoriesViewController: UIViewController {
         viewModel.onLoading = { [weak self] isLoading in
             guard let self else { return }
             if isLoading {
-                categoriesTableView.refreshControl?.beginRefreshing()
+                categoriesCollectionView.refreshControl?.beginRefreshing()
             } else {
-                categoriesTableView.refreshControl?.endRefreshing()
+                categoriesCollectionView.refreshControl?.endRefreshing()
             }
         }
         
         viewModel.onLoadSuccess = { [weak self] list in
             guard let self else { return }
             self.list = list
-            categoriesTableView.reloadData()
+            categoriesCollectionView.reloadData()
         }
         
         viewModel.onFailure = { [weak self] failure in
@@ -79,20 +79,20 @@ final class CategoriesViewController: UIViewController {
     
     private func setupTableVeiw() {
         let controll = UIRefreshControl()
-        categoriesTableView = UITableView()
+        categoriesCollectionView = UICollectionView()
         controll.addTarget(self, action: #selector(onCategoriesLoading), for: .valueChanged)
-        categoriesTableView.dataSource = self
-        categoriesTableView.delegate = self
-        categoriesTableView.refreshControl = controll
-        categoriesTableView.register(CategoriesTableViewCell.self, forCellReuseIdentifier: CategoriesTableViewCell.identifier)
+        categoriesCollectionView.dataSource = self
+        categoriesCollectionView.delegate = self
+        categoriesCollectionView.refreshControl = controll
+//        categoriesCollectionView.register(CategoriesTableViewCell.self, forCellReuseIdentifier: CategoriesTableViewCell.identifier)
         
-        view.addSubview(categoriesTableView)
-        categoriesTableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(categoriesCollectionView)
+        categoriesCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            categoriesTableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            categoriesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            categoriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            categoriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            categoriesCollectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            categoriesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            categoriesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            categoriesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -101,27 +101,41 @@ final class CategoriesViewController: UIViewController {
     }
 }
 
-extension CategoriesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let category = (list[indexPath.row].encodeName)
-        router.showSelectedBooksList(categoryName: category)
-        tableView.deselectRow(at: indexPath, animated: true)
+//extension CategoriesViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let category = (list[indexPath.row].encodeName)
+//        router.showSelectedBooksList(categoryName: category)
+//        tableView.deselectRow(at: indexPath, animated: true)
+//    }
+//}
+//
+//extension CategoriesViewController: UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        list.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesTableViewCell.identifier, for: indexPath) as! CategoriesTableViewCell
+//        cell.setupModel(list[indexPath.row])
+//
+//        return cell
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 72.0
+//    }
+//}
+
+extension CategoriesViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
     }
 }
 
-extension CategoriesViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        list.count
-    }
+extension CategoriesViewController: UICollectionViewDelegate {
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesTableViewCell.identifier, for: indexPath) as! CategoriesTableViewCell
-        cell.setupModel(list[indexPath.row])
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 72.0
-    }
 }
