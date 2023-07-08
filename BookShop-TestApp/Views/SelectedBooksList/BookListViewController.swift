@@ -12,7 +12,9 @@ final class BookListViewController: UIViewController {
     private var list: [BooksModel] = []
     private var router: Router
     private var viewModel: BooksViewModel
-    private var tableView: UITableView!
+    private var wrapView: UIView!
+    private var appIcon: UIImageView!
+    private var booksCollectionView: UICollectionView!
     private var titleLabel: UILabel!
     
     init(router: Router, viewModel: BooksViewModel) {
@@ -27,9 +29,9 @@ final class BookListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(hexString: AllColors.mainColor.name)
         setupTitleLabel()
-        setupTableView()
+//        setupTableView()
         bindOnViewModel()
         viewModel.fetchData()
         overrideUserInterfaceStyle = .light
@@ -39,17 +41,16 @@ final class BookListViewController: UIViewController {
         viewModel.onLoading = { [weak self] isLoading in
             guard let self else { return }
             if isLoading {
-                tableView.refreshControl?.beginRefreshing()
+                booksCollectionView.refreshControl?.beginRefreshing()
             } else {
-                tableView.refreshControl?.endRefreshing()
+                booksCollectionView.refreshControl?.endRefreshing()
             }
         }
         
         viewModel.onLoadSuccess = { [weak self] list in
             guard let self else { return }
-//            print(list.count)
             self.list = list
-            tableView.reloadData()
+            booksCollectionView.reloadData()
         }
         
         viewModel.onFailure = { [weak self] failure in
@@ -62,6 +63,44 @@ final class BookListViewController: UIViewController {
                                           style: .cancel))
             present(alert, animated: true)
         }
+    }
+    
+    private func setupWrapView() {
+        titleLabel = UILabel()
+        appIcon = UIImageView()
+        wrapView = UIView()
+        wrapView.backgroundColor = UIColor(hexString: AllColors.mainColor.name)
+        
+        view.addSubview(wrapView)
+        wrapView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            wrapView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 7.0),
+            wrapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            wrapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+        
+        appIcon.image = UIImage(named: AllImages.appIcon.name)
+        appIcon.contentMode = .scaleAspectFit
+        wrapView.addSubview(appIcon)
+        appIcon.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            appIcon.topAnchor.constraint(equalTo: wrapView.topAnchor, constant: 8),
+            appIcon.leadingAnchor.constraint(equalTo: wrapView.leadingAnchor, constant: 16),
+            appIcon.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: 8),
+            appIcon.heightAnchor.constraint(equalToConstant: 40),
+            appIcon.widthAnchor.constraint(equalToConstant: 40)
+        ])
+        
+        titleLabel.text = LocalizedStrings.categoryLabel.localized
+        titleLabel.font = .systemFont(ofSize: 24, weight: .heavy)
+        titleLabel.textColor = UIColor(hexString: AllColors.whiteColor.name)
+        wrapView.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: wrapView.topAnchor, constant: 16),
+            titleLabel.leadingAnchor.constraint(equalTo: appIcon.trailingAnchor, constant: 16),
+            titleLabel.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: 6)
+        ])
     }
     
     private func setupTitleLabel() {
@@ -78,24 +117,27 @@ final class BookListViewController: UIViewController {
         ])
     }
     
-    private func setupTableView() {
-        let controll = UIRefreshControl()
-        tableView = UITableView()
-        controll.addTarget(self, action: #selector(onBooksLoading), for: .valueChanged)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.refreshControl = controll
-        tableView.estimatedRowHeight = 120.0
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(BookTableViewCell.self, forCellReuseIdentifier: BookTableViewCell.identifier)
+    private func setupCollectionView() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumLineSpacing = 16.0
+        flowLayout.minimumInteritemSpacing = 16.0
+        booksCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        let controll = UIRefreshControl()
+        controll.addTarget(self, action: #selector(onBooksLoading), for: .valueChanged)
+        booksCollectionView.refreshControl = controll
+        
+        booksCollectionView.dataSource = self
+        booksCollectionView.delegate = self
+        booksCollectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: BookCollectionViewCell.identifier)
+
+        view.addSubview(booksCollectionView)
+        booksCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            booksCollectionView.topAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: 16),
+            booksCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            booksCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            booksCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -104,24 +146,42 @@ final class BookListViewController: UIViewController {
     }
 }
 
-extension BookListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        list.count
+extension BookListViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: BookTableViewCell.identifier, for: indexPath) as! BookTableViewCell
-        cell.setup(list[indexPath.row])
-        return cell
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return list.count
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//
+//    }
 }
 
-extension BookListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedURl = list[indexPath.row].buyURl
-        let safariViewController = SFSafariViewController(url: selectedURl)
-        present(safariViewController, animated: true)
-        
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
+extension BookListViewController: UICollectionViewDelegate {
+    
 }
+
+//extension BookListViewController: UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        list.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: BookTableViewCell.identifier, for: indexPath) as! BookTableViewCell
+//        cell.setup(list[indexPath.row])
+//        return cell
+//    }
+//}
+
+//extension BookListViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let selectedURl = list[indexPath.row].buyURl
+//        let safariViewController = SFSafariViewController(url: selectedURl)
+//        present(safariViewController, animated: true)
+//
+//        tableView.deselectRow(at: indexPath, animated: true)
+//    }
+//}

@@ -15,7 +15,6 @@ final class CategoriesViewController: UIViewController {
     private var viewModel: CategoriesViewModel
     private var titleLabel: UILabel!
     private var categoriesCollectionView: UICollectionView!
-    private var flowLayout: UICollectionViewFlowLayout!
     
     init(router: Router, viewModel: CategoriesViewModel!) {
         self.router = router
@@ -107,8 +106,8 @@ final class CategoriesViewController: UIViewController {
     
     private func setupCollectionVeiw() {
         let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumLineSpacing = 16.0
         flowLayout.minimumInteritemSpacing = 16.0
-//        flowLayout.scrollDirection = .vertical
         categoriesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         
         let controll = UIRefreshControl()
@@ -147,7 +146,6 @@ extension CategoriesViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.identifier, for: indexPath) as! CategoriesCollectionViewCell
         let item = list[indexPath.row]
-        print(item)
         cell.setup(item)
         return cell
     }

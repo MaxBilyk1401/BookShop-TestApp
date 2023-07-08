@@ -44,6 +44,7 @@
 		9D6E27072A58B7A500C76AA0 /* AllColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E27062A58B7A500C76AA0 /* AllColors.swift */; };
 		9D6E27092A59844000C76AA0 /* AllImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E27082A59843F00C76AA0 /* AllImages.swift */; };
 		9D6E270B2A59906300C76AA0 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E270A2A59906300C76AA0 /* CategoriesCollectionViewCell.swift */; };
+		9D6E270D2A59F30B00C76AA0 /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E270C2A59F30B00C76AA0 /* BookCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		9D6E27062A58B7A500C76AA0 /* AllColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllColors.swift; sourceTree = "<group>"; };
 		9D6E27082A59843F00C76AA0 /* AllImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllImages.swift; sourceTree = "<group>"; };
 		9D6E270A2A59906300C76AA0 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		9D6E270C2A59F30B00C76AA0 /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			children = (
 				9D3277302A5622F70071F6A7 /* BookListViewController.swift */,
 				9D3277342A5626780071F6A7 /* BookListUIComposer.swift */,
+				9D6E270C2A59F30B00C76AA0 /* BookCollectionViewCell.swift */,
 				9D32773E2A562ECD0071F6A7 /* BookTableViewCell.swift */,
 				9D3277362A5626F30071F6A7 /* BooksViewModel.swift */,
 			);
@@ -347,6 +350,7 @@
 				9D32771A2A535AC30071F6A7 /* NetworkCategoriesResponse.swift in Sources */,
 				9D3277232A5367AF0071F6A7 /* CategoriesUIComposer.swift in Sources */,
 				9D32776E2A5773070071F6A7 /* LocalizedStrigs.swift in Sources */,
+				9D6E270D2A59F30B00C76AA0 /* BookCollectionViewCell.swift in Sources */,
 				9D3277652A5752410071F6A7 /* NetworkBooksResponse.swift in Sources */,
 				9D3277432A56C2860071F6A7 /* CategoryModel.swift in Sources */,
 				9D3277582A56FD470071F6A7 /* LoadService.swift in Sources */,
