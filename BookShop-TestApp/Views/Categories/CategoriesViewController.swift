@@ -29,10 +29,9 @@ final class CategoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hexString: AllColors.mainColor.name)
-        setupWrapView()
         setupCollectionVeiw()
         bindOnViewModel()
-        
+        setupNavigationBar()
         overrideUserInterfaceStyle = .light
         viewModel.fetchData()
     }
@@ -64,6 +63,15 @@ final class CategoriesViewController: UIViewController {
                                           style: .cancel))
             present(alert, animated: true)
         }
+    }
+    
+    private func setupNavigationBar() {
+        let titleAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.boldSystemFont(ofSize: 18),
+            .foregroundColor: UIColor.white
+        ]
+        navigationController?.navigationBar.titleTextAttributes = titleAttributes
+        navigationItem.title = "\(LocalizedStrings.categoryLabel.localized)"
     }
     
     private func setupWrapView() {
@@ -122,7 +130,7 @@ final class CategoriesViewController: UIViewController {
         view.addSubview(categoriesCollectionView)
         categoriesCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            categoriesCollectionView.topAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: 16),
+            categoriesCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             categoriesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             categoriesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             categoriesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -136,11 +144,11 @@ final class CategoriesViewController: UIViewController {
 
 extension CategoriesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return list.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return list.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

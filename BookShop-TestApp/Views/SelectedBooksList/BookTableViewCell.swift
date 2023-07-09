@@ -2,30 +2,26 @@
 //  BookTableViewCell.swift
 //  BookShop-TestApp
 //
-//  Created by Maxos on 7/6/23.
+//  Created by Maxos on 7/9/23.
 //
 
 import UIKit
 
-class BookTableViewCell: UITableViewCell {
-    static var identifier: String {
-        return String(describing: Self.self)
-    }
-    private var nameLabel: UILabel!
-    private var descriptionLabel: UILabel!
-    private var authorLabel: UILabel!
-    private var publisherLabel: UILabel!
-    private var bookImage: UIImageView!
+final class BookTableViewCell: UITableViewCell {
+    private var rectangleView: UIView!
     private var rankLabel: UILabel!
-
+    private var titleLabel: UILabel!
+    private var authorLabel: UILabel!
+    private var authorImage: UIImageView!
+    private var publisherLabel: UILabel!
+    private var publisherImage: UIImageView!
+    private var descriptionLabel: UILabel!
+    private var bookImage: UIImageView!
+    private var buyButton: UIButton!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupIconBook()
-        setupNameLabel()
-        setupAuthorLabel()
-        setupPublisherLabel()
-        setupDescriptionLabel()
-        setupRankLabel()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -33,99 +29,224 @@ class BookTableViewCell: UITableViewCell {
     }
     
     func setup(_ model: BooksModel) {
-        nameLabel.text = model.title
+        rankLabel.text = "#\(model.rank)"
+        titleLabel.text = model.title
         authorLabel.text = model.author
         publisherLabel.text = model.publisher
         descriptionLabel.text = model.description
-        rankLabel.text = String(model.rank)
         bookImage.setImage(with: model.bookImage)
     }
     
-    private func setupIconBook() {
-        bookImage = UIImageView()
-        bookImage.contentMode = .scaleAspectFill
+    private func setupLayout() {
+        let wrap = configureWrapView()
+        contentView.addSubview(wrap)
         
-        contentView.addSubview(bookImage)
-        bookImage.translatesAutoresizingMaskIntoConstraints = false
+        wrap.layer.cornerRadius = 16
+        wrap.layer.masksToBounds = false
+        wrap.layer.borderWidth = 0.25
+        wrap.layer.borderColor = UIColor(hexString: AllColors.whiteTransparentColor.name).cgColor
+        
         NSLayoutConstraint.activate([
-            bookImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 36),
-            bookImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            bookImage.widthAnchor.constraint(equalToConstant: 72),
-            bookImage.heightAnchor.constraint(equalToConstant: 72),
+            wrap.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8.0),
+            wrap.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8.0),
+            wrap.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
+            wrap.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0)
         ])
-    }
-    
-    private func setupNameLabel() {
-        nameLabel = UILabel()
-        nameLabel.font = .systemFont(ofSize: 18, weight: .medium)
-        nameLabel.textColor = .black
-        nameLabel.numberOfLines = 0
         
-        contentView.addSubview(nameLabel)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        let leftView = configureLeftView()
+        wrap.addSubview(leftView)
+        
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 24),
-            nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            leftView.topAnchor.constraint(equalTo: wrap.topAnchor, constant: 0.0),
+            leftView.bottomAnchor.constraint(lessThanOrEqualTo: wrap.bottomAnchor, constant: 0.0),
+            leftView.leadingAnchor.constraint(equalTo: wrap.leadingAnchor, constant: 0.0),
+        ])
+        
+        let rightView = configureRightView()
+        wrap.addSubview(rightView)
+        
+        NSLayoutConstraint.activate([
+            rightView.topAnchor.constraint(equalTo: wrap.topAnchor, constant: 0.0),
+            rightView.bottomAnchor.constraint(lessThanOrEqualTo: wrap.bottomAnchor),
+            rightView.trailingAnchor.constraint(equalTo: wrap.trailingAnchor, constant: 0.0),
+            rightView.heightAnchor.constraint(equalToConstant: 150.0),
+            rightView.widthAnchor.constraint(equalToConstant: 165.0),
             
+            rightView.leadingAnchor.constraint(equalTo: leftView.trailingAnchor, constant: 16.0)
         ])
     }
     
-    private func setupAuthorLabel() {
-        authorLabel = UILabel()
-        authorLabel.font = .systemFont(ofSize: 16, weight: .regular)
-        authorLabel.textColor = .black
-        authorLabel.numberOfLines = 0
-        
-        contentView.addSubview(authorLabel)
-        authorLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func configureLeftView() -> UIView {
+        let view = UIView()
+        view.layer.cornerRadius = 16
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(hexString: AllColors.mainColor.name)
+                
+        rankLabel = setupRankLabel()
+        view.addSubview(rankLabel)
         NSLayoutConstraint.activate([
-            authorLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
-            authorLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            rankLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 16.0),
+            rankLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0)
         ])
-    }
-    
-    private func setupPublisherLabel() {
-        publisherLabel = UILabel()
-        publisherLabel.font = .systemFont(ofSize: 16, weight: .regular)
-        publisherLabel.textColor = .black
-        publisherLabel.numberOfLines = 0
         
-        contentView.addSubview(publisherLabel)
-        publisherLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel = setupTitleLabel()
+        view.addSubview(titleLabel)
         NSLayoutConstraint.activate([
-            publisherLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8),
-            publisherLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: rankLabel.bottomAnchor, constant: 16.0),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0)
         ])
-    }
-    
-    private func setupDescriptionLabel() {
-        descriptionLabel = UILabel()
-        descriptionLabel.font = .systemFont(ofSize: 16, weight: .regular)
-        descriptionLabel.textColor = .black
-        descriptionLabel.numberOfLines = 0
         
-        contentView.addSubview(descriptionLabel)
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        authorImage = setupAuthorImage()
+        authorLabel = setupAuthorLabel()
+        view.addSubview(authorImage)
+        view.addSubview(authorLabel)
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: publisherLabel.bottomAnchor, constant: 8),
-            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            descriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8.0),
+            authorLabel.leadingAnchor.constraint(equalTo: authorImage.trailingAnchor, constant: 8.0),
+            authorLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16),
+            authorImage.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8.0),
+            authorImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
+            authorImage.widthAnchor.constraint(equalToConstant: 20),
+            authorImage.heightAnchor.constraint(equalToConstant: 20)
         ])
+        
+        publisherLabel = setupPublisherLabel()
+        publisherImage = setupPublisherImage()
+        view.addSubview(publisherImage)
+        view.addSubview(publisherLabel)
+        NSLayoutConstraint.activate([
+            publisherLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8.0),
+            publisherLabel.leadingAnchor.constraint(equalTo: publisherImage.trailingAnchor, constant: 8.0),
+            publisherImage.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8.0),
+            publisherImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
+            publisherImage.widthAnchor.constraint(equalToConstant: 20.0),
+            publisherImage.heightAnchor.constraint(equalToConstant: 20.0),
+        ])
+        
+        descriptionLabel = setupDescriptionLabel()
+        view.addSubview(descriptionLabel)
+        NSLayoutConstraint.activate([
+            descriptionLabel.topAnchor.constraint(equalTo: publisherLabel.bottomAnchor, constant: 16),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            descriptionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16)
+        ])
+        
+        return view
     }
     
-    private func setupRankLabel() {
-        rankLabel = UILabel()
-        rankLabel.font = .systemFont(ofSize: 16, weight: .medium)
-        rankLabel.textColor = .black
-        rankLabel.numberOfLines = 0
+    private func configureRightView() -> UIView {
+        let view = UIView()
+        view.layer.cornerRadius = 16
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(hexString: AllColors.mainColor.name)
         
-        contentView.addSubview(rankLabel)
+        bookImage = setupBookImage()
+        view.addSubview(bookImage)
+        NSLayoutConstraint.activate([
+            bookImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 16.0),
+            bookImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
+            bookImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
+            bookImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 24)
+        ])
+        
+        return view
+    }
+    
+    private func configureWrapView() -> UIView {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(hexString: AllColors.mainColor.name)
+        return view
+    }
+    
+    private func setupRankLabel() -> UILabel {
+        let rankLabel = UILabel()
+        rankLabel.layer.cornerRadius = 4.0
+        rankLabel.clipsToBounds = true
         rankLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            rankLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
-            rankLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            rankLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-        ])
+        rankLabel.numberOfLines = 0
+        rankLabel.backgroundColor = UIColor(hexString: AllColors.accentColor.name)
+        return rankLabel
+    }
+    
+    private func setupTitleLabel() -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.textColor = UIColor(hexString: AllColors.whiteColor.name)
+        return label
+    }
+    
+    private func setupAuthorLabel() -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.textColor = UIColor(hexString: AllColors.whiteTransparentColor.name)
+        return label
+    }
+    
+    private func setupPublisherLabel() -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.textColor = UIColor(hexString: AllColors.whiteTransparentColor.name)
+        return label
+    }
+    
+    private func setupAuthorImage() -> UIImageView {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: AllImages.authorImage.name)
+        return image
+    }
+    
+    private func setupPublisherImage() -> UIImageView {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: AllImages.publisherImage.name)
+        return image
+    }
+    
+    private func setupDescriptionLabel() -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.textColor = UIColor(hexString: AllColors.whiteTransparentColor.name)
+        label.numberOfLines = 0
+        return label
+    }
+    
+    private func setupBookImage() -> UIImageView {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFit
+        return image
+    }
+    
+    private func setupDetailsButton() -> UIButton {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle(LocalizedStrings.details.localized, for: .normal)
+        button.setImage(UIImage(named: AllImages.arrowImage.name), for: .normal)
+        button.backgroundColor = UIColor(hexString: AllColors.accentColor.name)
+        button.tintColor = UIColor(named: AllColors.whiteColor.name)
+        button.semanticContentAttribute = .forceRightToLeft
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0)
+        button.layer.cornerRadius = 8
+        button.layer.borderColor = UIColor(named: AllColors.whiteColor.name)?.cgColor
+        button.layer.borderWidth = 0.50
+        
+        return button
+    }
+    
+    private func SetupCellView() {
+        layer.cornerRadius = 16
+        layer.masksToBounds = false
+        layer.borderWidth = 0.25
+        layer.borderColor = UIColor(hexString: AllColors.whiteTransparentColor.name).cgColor
     }
 }

@@ -57,6 +57,7 @@ final class CategoriesCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             dateImage.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             dateImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            dateImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             dateImage.heightAnchor.constraint(equalToConstant: 20),
             dateImage.widthAnchor.constraint(equalToConstant: 20)
         ])
@@ -70,8 +71,9 @@ final class CategoriesCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(dateLabel)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            dateLabel.leadingAnchor.constraint(equalTo: dateImage.trailingAnchor, constant: 8)
+//            dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            dateLabel.leadingAnchor.constraint(equalTo: dateImage.trailingAnchor, constant: 8),
+            dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
     }
     
@@ -83,7 +85,8 @@ final class CategoriesCollectionViewCell: UICollectionViewCell {
         arrowImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             arrowImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            arrowImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            arrowImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            arrowImage.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: -16)
         ])
     }
     

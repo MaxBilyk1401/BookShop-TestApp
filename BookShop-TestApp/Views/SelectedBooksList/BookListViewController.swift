@@ -14,7 +14,7 @@ final class BookListViewController: UIViewController {
     private var viewModel: BooksViewModel
     private var wrapView: UIView!
     private var appIcon: UIImageView!
-    private var booksCollectionView: UICollectionView!
+    private var booksTableView: UITableView!
     private var titleLabel: UILabel!
     
     init(router: Router, viewModel: BooksViewModel) {
@@ -31,8 +31,7 @@ final class BookListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hexString: AllColors.mainColor.name)
         setupTitleLabel()
-        setupWrapView()
-        setupCollectionView()
+        setupTableView()
         bindOnViewModel()
         viewModel.fetchData()
         overrideUserInterfaceStyle = .dark
@@ -42,16 +41,16 @@ final class BookListViewController: UIViewController {
         viewModel.onLoading = { [weak self] isLoading in
             guard let self else { return }
             if isLoading {
-                booksCollectionView.refreshControl?.beginRefreshing()
+                booksTableView.refreshControl?.beginRefreshing()
             } else {
-                booksCollectionView.refreshControl?.endRefreshing()
+                booksTableView.refreshControl?.endRefreshing()
             }
         }
         
         viewModel.onLoadSuccess = { [weak self] list in
             guard let self else { return }
             self.list = list
-            booksCollectionView.reloadData()
+            booksTableView.reloadData()
         }
         
         viewModel.onFailure = { [weak self] failure in
@@ -64,44 +63,6 @@ final class BookListViewController: UIViewController {
                                           style: .cancel))
             present(alert, animated: true)
         }
-    }
-    
-    private func setupWrapView() {
-        titleLabel = UILabel()
-        appIcon = UIImageView()
-        wrapView = UIView()
-        wrapView.backgroundColor = UIColor(hexString: AllColors.mainColor.name)
-        
-        view.addSubview(wrapView)
-        wrapView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            wrapView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 7.0),
-            wrapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            wrapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
-        
-        appIcon.image = UIImage(named: AllImages.appIcon.name)
-        appIcon.contentMode = .scaleAspectFit
-        wrapView.addSubview(appIcon)
-        appIcon.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            appIcon.topAnchor.constraint(equalTo: wrapView.topAnchor, constant: 8),
-            appIcon.leadingAnchor.constraint(equalTo: wrapView.leadingAnchor, constant: 16),
-            appIcon.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: 8),
-            appIcon.heightAnchor.constraint(equalToConstant: 40),
-            appIcon.widthAnchor.constraint(equalToConstant: 40)
-        ])
-        
-        titleLabel.text = LocalizedStrings.categoryLabel.localized
-        titleLabel.font = .systemFont(ofSize: 24, weight: .heavy)
-        titleLabel.textColor = UIColor(hexString: AllColors.whiteColor.name)
-        wrapView.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: wrapView.topAnchor, constant: 16),
-            titleLabel.leadingAnchor.constraint(equalTo: appIcon.trailingAnchor, constant: 16),
-            titleLabel.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: 6)
-        ])
     }
     
     private func setupTitleLabel() {
@@ -118,28 +79,31 @@ final class BookListViewController: UIViewController {
         ])
     }
     
-    private func setupCollectionView() {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 16.0
-        flowLayout.minimumInteritemSpacing = 16.0
-        booksCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+    private func setupTableView() {
+        booksTableView = UITableView(frame: .zero)
+        booksTableView.separatorStyle = .none
         
         let controll = UIRefreshControl()
         controll.addTarget(self, action: #selector(onBooksLoading), for: .valueChanged)
-        booksCollectionView.refreshControl = controll
+        booksTableView.refreshControl = controll
         
-        booksCollectionView.dataSource = self
-        booksCollectionView.delegate = self
-        booksCollectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: BookCollectionViewCell.identifier)
-
-        view.addSubview(booksCollectionView)
-        booksCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        booksTableView.dataSource = self
+        booksTableView.delegate = self
+        booksTableView.register(BookTableViewCell.self, forCellReuseIdentifier: BookTableViewCell.identifier)
+        
+        view.addSubview(booksTableView)
+        booksTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            booksCollectionView.topAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: 16),
-            booksCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            booksCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            booksCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            booksTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            booksTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            booksTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            booksTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func openURL(_ url: URL) {
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true)
     }
     
     @objc private func onBooksLoading() {
@@ -147,33 +111,25 @@ final class BookListViewController: UIViewController {
     }
 }
 
-extension BookListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+extension BookListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        list.count
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return list.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCollectionViewCell.identifier, for: indexPath) as! BookCollectionViewCell
-        cell.setup(list[indexPath.row])
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = list[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: BookTableViewCell.identifier, for: indexPath) as! BookTableViewCell
+        cell.setup(model)
         
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (UIScreen.main.bounds.width - 32)
-        let height = width / 398 * 424
-        return CGSize(width: width, height: height)
-    }
 }
 
-extension BookListViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedURl = list[indexPath.row].buyURl
-                let safariViewController = SFSafariViewController(url: selectedURl)
-                present(safariViewController, animated: true)
+extension BookListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedURL = list[indexPath.row].buyURl
+        openURL(selectedURL)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
