@@ -2,7 +2,7 @@
 Hello everyone!
 Today I'm presenting my test project that I've been working on for the past week. It's a small bookshop app where you can browse different book categories, select a specific book, and purchase it on Amazon.
 
-Technical stacks used: UIKit, MVVM acrhitecture with closures, auto layout programatically, DRY, KISS, SOLID.
+Technical stacks used: UIKit, MVVM acrhitecture with closures, auto layout programatically, DRY, KISS, SOLID, Combine.
 
 Additional main libraries: Moya and Kingfisher.
 
