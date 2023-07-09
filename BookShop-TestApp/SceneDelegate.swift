@@ -25,7 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         router.showCategoriesScreenAsRootController()
         window.rootViewController = navController
         window.makeKeyAndVisible()
-        
         self.window = window
     }
 
