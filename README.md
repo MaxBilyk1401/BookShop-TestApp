@@ -2,7 +2,7 @@ Hello everyone!
 
 Today, I'm presenting my test project that I've been working on for the past week. It's a small bookshop app where you can browse different book categories, select a specific book, and make a purchase on Amazon.
 
-Technical stacks used: UIKit, MVVM architecture with closures, auto layout programmatically, DRY, KISS, SOLID, Combine.
+Technical stacks used: UIKit, MVVM architecture with closures, auto layout programmatically, DRY, KISS, SOLID, CoreData.
 
 Supported devices: iPhone, iPad. Portrait and landscape orientations.
 
