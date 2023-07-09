@@ -71,7 +71,6 @@ final class BookTableViewCell: UITableViewCell {
             rightView.trailingAnchor.constraint(equalTo: wrap.trailingAnchor, constant: 0.0),
             rightView.heightAnchor.constraint(equalToConstant: 150.0),
             rightView.widthAnchor.constraint(equalToConstant: 165.0),
-            
             rightView.leadingAnchor.constraint(equalTo: leftView.trailingAnchor, constant: 16.0)
         ])
     }
@@ -132,7 +131,6 @@ final class BookTableViewCell: UITableViewCell {
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
             descriptionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16.0)
         ])
-        
         return view
     }
     
