@@ -50,23 +50,23 @@ final class CategoriesTableViewCell: UITableViewCell {
         wrapView.addSubview(arrowImage)
         NSLayoutConstraint.activate([
             arrowImage.centerYAnchor.constraint(equalTo: wrapView.centerYAnchor),
-            arrowImage.trailingAnchor.constraint(equalTo: wrapView.trailingAnchor, constant: -16),
+            arrowImage.trailingAnchor.constraint(equalTo: wrapView.trailingAnchor, constant: -16.0),
         ])
         
         titleLabel = setupTitleLabel()
         wrapView.addSubview(titleLabel)
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: wrapView.topAnchor, constant: 16),
-            titleLabel.leadingAnchor.constraint(equalTo: wrapView.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: arrowImage.leadingAnchor, constant: 16)
+            titleLabel.topAnchor.constraint(equalTo: wrapView.topAnchor, constant: 16.0),
+            titleLabel.leadingAnchor.constraint(equalTo: wrapView.leadingAnchor, constant: 16.0),
+            titleLabel.trailingAnchor.constraint(equalTo: arrowImage.leadingAnchor, constant: 16.0)
         ])
         
         dateImage = setupDateImage()
         wrapView.addSubview(dateImage)
         NSLayoutConstraint.activate([
-            dateImage.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            dateImage.leadingAnchor.constraint(equalTo: wrapView.leadingAnchor, constant: 16),
-            dateImage.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: -16),
+            dateImage.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8.0),
+            dateImage.leadingAnchor.constraint(equalTo: wrapView.leadingAnchor, constant: 16.0),
+            dateImage.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: -16.0),
             dateImage.heightAnchor.constraint(equalToConstant: 20),
             dateImage.widthAnchor.constraint(equalToConstant: 20)
         ])
@@ -74,9 +74,9 @@ final class CategoriesTableViewCell: UITableViewCell {
         dateLabel = setupDateLabel()
         wrapView.addSubview(dateLabel)
         NSLayoutConstraint.activate([
-            dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            dateLabel.leadingAnchor.constraint(equalTo: dateImage.trailingAnchor, constant: 8),
-            dateLabel.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: -16)
+            dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10.0),
+            dateLabel.leadingAnchor.constraint(equalTo: dateImage.trailingAnchor, constant: 8.0),
+            dateLabel.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: -16.0)
         ])
         
     }
@@ -119,7 +119,6 @@ final class CategoriesTableViewCell: UITableViewCell {
     private func setupLayout() {
         layer.cornerRadius = 16
         backgroundColor = UIColor(hexString: AllColors.blackColor.name)
-//        layer.borderWidth = 0.40
         layer.masksToBounds = false
     }
 

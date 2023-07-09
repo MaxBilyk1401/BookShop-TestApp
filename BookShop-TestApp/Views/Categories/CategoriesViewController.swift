@@ -28,6 +28,8 @@ final class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = UIColor(hexString: AllColors.mainColor.name)
+        navigationController?.navigationBar.barStyle = .default
         view.backgroundColor = UIColor(hexString: AllColors.mainColor.name)
         setupCollectionVeiw()
         bindOnViewModel()
@@ -48,17 +50,16 @@ final class CategoriesViewController: UIViewController {
         viewModel.onLoadSuccess = { [weak self] list in
             guard let self else { return }
             self.list = list
-            print(list)
             categoriesTableView.reloadData()
         }
         
         viewModel.onFailure = { [weak self] failure in
             guard let self else { return }
             guard let failure else { return }
-            let alert = UIAlertController(title: String(failure),
+            let alert = UIAlertController(title: failure,
                                           message: nil,
                                           preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK",
+            alert.addAction(UIAlertAction(title: "\(LocalizedStrings.OK.localized)",
                                           style: .cancel))
             present(alert, animated: true)
         }
@@ -92,9 +93,9 @@ final class CategoriesViewController: UIViewController {
         wrapView.addSubview(appIcon)
         appIcon.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            appIcon.topAnchor.constraint(equalTo: wrapView.topAnchor, constant: 8),
-            appIcon.leadingAnchor.constraint(equalTo: wrapView.leadingAnchor, constant: 16),
-            appIcon.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: 8),
+            appIcon.topAnchor.constraint(equalTo: wrapView.topAnchor, constant: 8.0),
+            appIcon.leadingAnchor.constraint(equalTo: wrapView.leadingAnchor, constant: 16.0),
+            appIcon.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: 8.0),
             appIcon.heightAnchor.constraint(equalToConstant: 40),
             appIcon.widthAnchor.constraint(equalToConstant: 40)
         ])
@@ -105,9 +106,9 @@ final class CategoriesViewController: UIViewController {
         wrapView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: wrapView.topAnchor, constant: 16),
-            titleLabel.leadingAnchor.constraint(equalTo: appIcon.trailingAnchor, constant: 16),
-            titleLabel.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: 6)
+            titleLabel.topAnchor.constraint(equalTo: wrapView.topAnchor, constant: 16.0),
+            titleLabel.leadingAnchor.constraint(equalTo: appIcon.trailingAnchor, constant: 16.0),
+            titleLabel.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: 6.0)
         ])
     }
     

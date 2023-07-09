@@ -29,11 +29,14 @@ final class BookListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = UIColor(hexString: AllColors.mainColor.name)
+        navigationController?.navigationBar.barStyle = .default
         view.backgroundColor = UIColor(hexString: AllColors.mainColor.name)
         setupTableView()
         setupNavigationBar()
         bindOnViewModel()
         viewModel.fetchData()
+        overrideUserInterfaceStyle = .dark
     }
     
     private func bindOnViewModel() {
@@ -55,7 +58,7 @@ final class BookListViewController: UIViewController {
         viewModel.onFailure = { [weak self] failure in
             guard let self else { return }
             guard let failure else { return }
-            let alert = UIAlertController(title: String(failure),
+            let alert = UIAlertController(title: failure,
                                           message: nil,
                                           preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: LocalizedStrings.OK.localized,
@@ -71,6 +74,7 @@ final class BookListViewController: UIViewController {
         ]
         navigationController?.navigationBar.titleTextAttributes = titleAttributes
         navigationItem.title = "\(LocalizedStrings.categoryLabel.localized)"
+        
     }
     
     private func setupTableView() {

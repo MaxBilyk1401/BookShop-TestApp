@@ -5,7 +5,9 @@
   Created by Maxos on 7/7/23.
   
 */
-"LocalizedStrings_categoryLabel" = "Categories";
-"LocalizedStrings_bookLabel" = "Selected books";
-"LocalizedStrings_details" = "Details";
-"LocalizedStrings_OK" = "OK";
+"categoryLabel" = "Categories";
+"bookLabel" = "Selected books";
+"details" = "Details";
+"OK" = "OK";
+"back" = "Back";
+"failure" = "Oops, something went wrong!";

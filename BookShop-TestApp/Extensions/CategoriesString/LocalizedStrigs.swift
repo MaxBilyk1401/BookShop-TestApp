@@ -12,8 +12,10 @@ enum LocalizedStrings: String {
     case bookLabel
     case details
     case OK
+    case back
+    case failure
     
     var localized: String {
-        NSLocalizedString(String(describing: Self.self) + "_\(rawValue)", comment: "")
+        NSLocalizedString(rawValue, comment: "")
     }
 }

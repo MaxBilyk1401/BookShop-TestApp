@@ -27,7 +27,7 @@ final class CategoriesViewModel {
                 case .success(let success):
                     self.onLoadSuccess?(success)
                 case .failure:
-                    self.onFailure?("Oops, something went wrong!")
+                    self.onFailure?("\(LocalizedStrings.failure.localized)")
                 }
                 self.onLoading?(false)
             }

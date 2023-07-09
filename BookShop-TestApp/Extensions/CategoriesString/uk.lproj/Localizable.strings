@@ -5,7 +5,9 @@
   Created by Maxos on 7/7/23.
   
 */
-"LocalizedStrings_categoryLabel" = "Категорії";
-"LocalizedStrings_bookLabel" = "Вибрані книги";
-"LocalizedStrings_details" = "Деталі";
-"LocalizedStrings_OK" = "Окей";
+"categoryLabel" = "Категорії";
+"bookLabel" = "Вибрані книги";
+"details" = "Деталі";
+"OK" = "Окей";
+"back" = "Назад";
+"failure" = "Ой, щось пішло не так!";

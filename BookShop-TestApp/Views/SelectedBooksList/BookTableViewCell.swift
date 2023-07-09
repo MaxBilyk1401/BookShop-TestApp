@@ -127,10 +127,10 @@ final class BookTableViewCell: UITableViewCell {
         descriptionLabel = setupDescriptionLabel()
         view.addSubview(descriptionLabel)
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: publisherLabel.bottomAnchor, constant: 16),
-            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            descriptionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16)
+            descriptionLabel.topAnchor.constraint(equalTo: publisherLabel.bottomAnchor, constant: 16.0),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
+            descriptionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16.0)
         ])
         
         return view
@@ -147,8 +147,17 @@ final class BookTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             bookImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 16.0),
             bookImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
-            bookImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
-            bookImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 24)
+            bookImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0)
+        ])
+        
+        buyButton = setupDetailsButton()
+        view.addSubview(buyButton)
+        NSLayoutConstraint.activate([
+            buyButton.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 16.0),
+            buyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
+            buyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
+            buyButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -4.0),
+            buyButton.heightAnchor.constraint(equalToConstant: 52.0)
         ])
         
         return view
@@ -222,6 +231,7 @@ final class BookTableViewCell: UITableViewCell {
     
     private func setupBookImage() -> UIImageView {
         let image = UIImageView()
+        image.layer.cornerRadius = 16.0
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
         return image
