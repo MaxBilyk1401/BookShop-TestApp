@@ -30,11 +30,10 @@ final class BookListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hexString: AllColors.mainColor.name)
-        setupTitleLabel()
         setupTableView()
+        setupNavigationBar()
         bindOnViewModel()
         viewModel.fetchData()
-        overrideUserInterfaceStyle = .dark
     }
     
     private func bindOnViewModel() {
@@ -65,18 +64,13 @@ final class BookListViewController: UIViewController {
         }
     }
     
-    private func setupTitleLabel() {
-        titleLabel = UILabel()
-        titleLabel.text = LocalizedStrings.bookLabel.localized
-        titleLabel.font = .systemFont(ofSize: 24, weight: .heavy)
-        titleLabel.textColor = .black
-        
-        view.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16)
-        ])
+    private func setupNavigationBar() {
+        let titleAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.boldSystemFont(ofSize: 18),
+            .foregroundColor: UIColor.white
+        ]
+        navigationController?.navigationBar.titleTextAttributes = titleAttributes
+        navigationItem.title = "\(LocalizedStrings.categoryLabel.localized)"
     }
     
     private func setupTableView() {
@@ -94,7 +88,7 @@ final class BookListViewController: UIViewController {
         view.addSubview(booksTableView)
         booksTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            booksTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            booksTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             booksTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             booksTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             booksTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)

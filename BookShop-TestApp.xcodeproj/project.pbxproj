@@ -42,7 +42,6 @@
 		9D3277812A5875980071F6A7 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9D3277802A5875980071F6A7 /* Moya */; };
 		9D6E27072A58B7A500C76AA0 /* AllColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E27062A58B7A500C76AA0 /* AllColors.swift */; };
 		9D6E27092A59844000C76AA0 /* AllImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E27082A59843F00C76AA0 /* AllImages.swift */; };
-		9D6E270B2A59906300C76AA0 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E270A2A59906300C76AA0 /* CategoriesCollectionViewCell.swift */; };
 		9D6E270F2A5ACD9F00C76AA0 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E270E2A5ACD9F00C76AA0 /* UITableViewCell+Extensions.swift */; };
 		9D6E27112A5ACE3C00C76AA0 /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E27102A5ACE3C00C76AA0 /* BookTableViewCell.swift */; };
 		9D6E27132A5B0C5900C76AA0 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E27122A5B0C5900C76AA0 /* CategoriesTableViewCell.swift */; };
@@ -86,7 +85,6 @@
 		9D3277822A5879980071F6A7 /* BookShop_TestApp v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BookShop_TestApp v2.xcdatamodel"; sourceTree = "<group>"; };
 		9D6E27062A58B7A500C76AA0 /* AllColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllColors.swift; sourceTree = "<group>"; };
 		9D6E27082A59843F00C76AA0 /* AllImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllImages.swift; sourceTree = "<group>"; };
-		9D6E270A2A59906300C76AA0 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D6E270E2A5ACD9F00C76AA0 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		9D6E27102A5ACE3C00C76AA0 /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
 		9D6E27122A5B0C5900C76AA0 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
@@ -152,7 +150,6 @@
 			children = (
 				9D3277032A5218E00071F6A7 /* CategoriesViewController.swift */,
 				9D6E27122A5B0C5900C76AA0 /* CategoriesTableViewCell.swift */,
-				9D6E270A2A59906300C76AA0 /* CategoriesCollectionViewCell.swift */,
 				9D32771B2A535DEB0071F6A7 /* CategoriesViewModel.swift */,
 				9D3277222A5367AF0071F6A7 /* CategoriesUIComposer.swift */,
 			);
@@ -381,7 +378,6 @@
 				9D3277472A56CB4F0071F6A7 /* CoreDataCategoriesService.swift in Sources */,
 				9D3277282A544E7B0071F6A7 /* CategoriesService.swift in Sources */,
 				9D32777E2A577A4D0071F6A7 /* UIImage+Extension.swift in Sources */,
-				9D6E270B2A59906300C76AA0 /* CategoriesCollectionViewCell.swift in Sources */,
 				9D32772A2A55789C0071F6A7 /* Color+Extension.swift in Sources */,
 				9D32771E2A535E150071F6A7 /* NetworkCategoriesService.swift in Sources */,
 			);
@@ -538,6 +534,7 @@
 				INFOPLIST_FILE = "BookShop-TestApp/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -566,6 +563,7 @@
 				INFOPLIST_FILE = "BookShop-TestApp/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

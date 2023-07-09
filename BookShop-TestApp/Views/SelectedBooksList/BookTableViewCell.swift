@@ -50,7 +50,7 @@ final class BookTableViewCell: UITableViewCell {
             wrap.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8.0),
             wrap.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8.0),
             wrap.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
-            wrap.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0)
+            wrap.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0)
         ])
         
         let leftView = configureLeftView()

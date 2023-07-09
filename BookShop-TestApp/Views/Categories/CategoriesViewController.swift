@@ -14,7 +14,7 @@ final class CategoriesViewController: UIViewController {
     private var appIcon: UIImageView!
     private var viewModel: CategoriesViewModel
     private var titleLabel: UILabel!
-    private var categoriesCollectionView: UICollectionView!
+    private var categoriesTableView: UITableView!
     
     init(router: Router, viewModel: CategoriesViewModel!) {
         self.router = router
@@ -32,7 +32,6 @@ final class CategoriesViewController: UIViewController {
         setupCollectionVeiw()
         bindOnViewModel()
         setupNavigationBar()
-        overrideUserInterfaceStyle = .light
         viewModel.fetchData()
     }
     
@@ -40,9 +39,9 @@ final class CategoriesViewController: UIViewController {
         viewModel.onLoading = { [weak self] isLoading in
             guard let self else { return }
             if isLoading {
-                categoriesCollectionView.refreshControl?.beginRefreshing()
+                categoriesTableView.refreshControl?.beginRefreshing()
             } else {
-                categoriesCollectionView.refreshControl?.endRefreshing()
+                categoriesTableView.refreshControl?.endRefreshing()
             }
         }
         
@@ -50,7 +49,7 @@ final class CategoriesViewController: UIViewController {
             guard let self else { return }
             self.list = list
             print(list)
-            categoriesCollectionView.reloadData()
+            categoriesTableView.reloadData()
         }
         
         viewModel.onFailure = { [weak self] failure in
@@ -113,27 +112,26 @@ final class CategoriesViewController: UIViewController {
     }
     
     private func setupCollectionVeiw() {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 16.0
-        flowLayout.minimumInteritemSpacing = 16.0
-        categoriesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        categoriesTableView = UITableView(frame: .zero)
+        categoriesTableView.separatorStyle = .none
         
         let controll = UIRefreshControl()
         controll.addTarget(self, action: #selector(onCategoriesLoading), for: .valueChanged)
         
-        categoriesCollectionView.backgroundColor = UIColor(hexString: AllColors.blackColor.name)
-        categoriesCollectionView.dataSource = self
-        categoriesCollectionView.delegate = self
-        categoriesCollectionView.refreshControl = controll
-        categoriesCollectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: CategoriesCollectionViewCell.identifier)
+        categoriesTableView.estimatedRowHeight = UITableView.automaticDimension
+        categoriesTableView.backgroundColor = UIColor(hexString: AllColors.blackColor.name)
+        categoriesTableView.dataSource = self
+        categoriesTableView.delegate = self
+        categoriesTableView.refreshControl = controll
+        categoriesTableView.register(CategoriesTableViewCell.self, forCellReuseIdentifier: CategoriesTableViewCell.identifier)
         
-        view.addSubview(categoriesCollectionView)
-        categoriesCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(categoriesTableView)
+        categoriesTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            categoriesCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            categoriesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            categoriesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            categoriesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            categoriesTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            categoriesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            categoriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            categoriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -142,32 +140,25 @@ final class CategoriesViewController: UIViewController {
     }
 }
 
-extension CategoriesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension CategoriesViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return list.count
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.identifier, for: indexPath) as! CategoriesCollectionViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesTableViewCell.identifier, for: indexPath) as! CategoriesTableViewCell
         let item = list[indexPath.row]
         cell.setup(item)
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (UIScreen.main.bounds.width - 32)
-        let height = width / 398 * 86
-        return CGSize(width: width, height: height)
-    }
 }
 
-extension CategoriesViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+extension CategoriesViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = (list[indexPath.row].encodeName)
         router.showSelectedBooksList(categoryName: category)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
