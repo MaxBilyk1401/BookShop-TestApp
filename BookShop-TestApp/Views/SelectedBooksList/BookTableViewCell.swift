@@ -145,17 +145,8 @@ final class BookTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             bookImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 16.0),
             bookImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
-            bookImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0)
-        ])
-        
-        buyButton = setupDetailsButton()
-        view.addSubview(buyButton)
-        NSLayoutConstraint.activate([
-            buyButton.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 16.0),
-            buyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
-            buyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
-            buyButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -4.0),
-            buyButton.heightAnchor.constraint(equalToConstant: 52.0)
+            bookImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
+            bookImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -4.0)
         ])
         
         return view
@@ -233,22 +224,6 @@ final class BookTableViewCell: UITableViewCell {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
         return image
-    }
-    
-    private func setupDetailsButton() -> UIButton {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(LocalizedStrings.details.localized, for: .normal)
-        button.setImage(UIImage(named: AllImages.arrowImage.name), for: .normal)
-        button.backgroundColor = UIColor(hexString: AllColors.accentColor.name)
-        button.tintColor = UIColor(named: AllColors.whiteColor.name)
-        button.semanticContentAttribute = .forceRightToLeft
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0)
-        button.layer.cornerRadius = 8
-        button.layer.borderColor = UIColor(named: AllColors.whiteColor.name)?.cgColor
-        button.layer.borderWidth = 0.50
-        
-        return button
     }
     
     private func SetupCellView() {
