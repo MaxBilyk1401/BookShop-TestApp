@@ -12,5 +12,4 @@ You can find the Figma design here: https://www.figma.com/file/C62gHNShV7Tb3x5Yo
 
 ![Mockup](https://github.com/MaxBilyk1401/BookShop-TestApp/assets/93383401/7185dd72-39dc-4bda-977f-d30a12b8f7ba)
 
-![Mockup](https://github.com/MaxBilyk1401/BookShop-TestApp/assets/93383401/25b1a070-631b-4974-b93a-5989fb796105)
-
+![iPad Mini](https://github.com/MaxBilyk1401/BookShop-TestApp/assets/93383401/03ccd2a8-a0df-4917-b2a1-11ce9fe0c8f3)
