@@ -55,7 +55,6 @@ final class BookTableViewCell: UITableViewCell {
         
         let leftView = configureLeftView()
         wrap.addSubview(leftView)
-        
         NSLayoutConstraint.activate([
             leftView.topAnchor.constraint(equalTo: wrap.topAnchor, constant: 0.0),
             leftView.bottomAnchor.constraint(lessThanOrEqualTo: wrap.bottomAnchor, constant: 0.0),
