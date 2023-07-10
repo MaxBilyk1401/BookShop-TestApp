@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LocalCategoriesServiceWithNetworkFallBack: CategoriesService {
+final class LocalCategoriesServiceWithNetworkFallBack: CategoriesService {
     private let localService: CategoriesService
     private let networkService: CategoriesService
     private let localStorage: SaveCategorisService
